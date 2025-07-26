@@ -3,8 +3,8 @@ import { Logo } from "../assets/index";
 
 function Header() {
   return (
-    <div className="container">
-      <div className="flex items-center justify-between py-4">
+    <div className=" bg-[#FFFEF3]">
+      <div className="flex  container items-center justify-between py-6">
         <div>
           <Image
             src={Logo}

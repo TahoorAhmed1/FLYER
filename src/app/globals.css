@@ -7,7 +7,7 @@
 }
 
 .container {
-  @apply max-w-[1169px]  md:px-8 px-3 mx-auto;
+  @apply max-w-[1200px]  md:px-8 px-3 mx-auto;
 }
 
 @theme inline {
@@ -22,4 +22,48 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.overlay {
+  background-image: url("../assets/line-overlay.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.overlay2 {
+  background-image: url("../assets/line-overlay-2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.overlay3 {
+  background-image: url("../assets/line-overlay-3.png");
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+
+}
+
+
+.brandoverlay2 {
+  background-image: url("../assets/brand-overlay.png");
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+
+}
+.retailerOverlay {
+  background-image: url("../assets/retailer-overlay.png");
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+
+}
+.contactOverlay {
+  background-image: url("../assets/contact-overlay.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
 }

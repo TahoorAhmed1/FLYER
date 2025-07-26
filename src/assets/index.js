@@ -1,4 +1,15 @@
 import Logo from "./logo.png"
 import Home1 from "./home-1.png"
+import LineOverly from "./line-overlay.png"
+import WhoWe from "./whoWe.png"
+import WhatWe from "./whatWe.png"
+import AppStore from "./appstore.png"
+import Google from "./google.png"
+import Collection from "./collection.png"
+import Retailers from "./retailers.png"
+import Brand from "./brand.png"
+import one from "./1.png"
+import two from "./2.png"
+import brandoverlay from "./brand-overlay.png"
 
-export { Logo, Home1 }
+export {brandoverlay,two,one , Brand,Retailers, AppStore, Google,Logo, Home1,LineOverly  ,WhoWe,WhatWe,Collection}
