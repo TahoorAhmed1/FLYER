@@ -17,7 +17,7 @@ function Hero() {
               <br />
               your favourite offers
             </p>
-            <button className="bg-yellow-400 hover:bg-yellow-500 px-6 py-3 text-black font-semibold rounded-[10px] text-[18px] transition-colors duration-200 flex items-center gap-2">
+            <button className="bg-primary hover:bg-primary/80  px-6 py-3 text-black font-semibold rounded-[10px] text-[18px] transition-colors duration-200 flex items-center gap-2">
               View Latest Offers
               <svg
                 width="16"

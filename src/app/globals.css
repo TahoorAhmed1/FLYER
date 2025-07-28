@@ -67,3 +67,10 @@ body {
   background-repeat: no-repeat;
 
 }
+.aboutBackgroundImage {
+  background-image: url("../assets/about/about.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 408.1600036621094px;
+}

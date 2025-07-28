@@ -17,7 +17,7 @@ function Download() {
             for discounts with ease. Enjoy personalized deals and updates on
             your wishlist items.
           </p>
-          <ol className="space-y-2 font-bold text-[10x]  mb-[30px] list-disc ml-5">
+          <ol className="space-y-2 font-bold text-[22px]  mb-[30px] list-disc ml-5">
             <li>Google Play: 4.4/5</li>
             <li>App Store: 4.4/5</li>
           </ol>

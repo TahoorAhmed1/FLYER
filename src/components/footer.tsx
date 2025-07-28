@@ -20,7 +20,7 @@ function Footer() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor
           </p>
-          <div className="flex items-center gap-4 mt-3">
+          <div className="flex items-center gap-5 mt-3">
             <svg
               width="11"
               height="21"
@@ -111,7 +111,7 @@ function Footer() {
               />
               <button
                 type="submit"
-                className="bg-yellow-400 text-[#1D1D1F] font-semibold px-6 rounded-[10px]"
+                className="bg-yellow-400 text-[#1D1D1F] font-semibold px-5 w-32 mx-auto rounded-[10px]"
               >
                 Subscribe
               </button>
