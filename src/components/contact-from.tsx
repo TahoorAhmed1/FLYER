@@ -9,7 +9,7 @@ function ContactForm() {
               id="fullName"
               name="fullName"
               placeholder="Full Name"
-              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 text-gray-700 placeholder-gray-500"
+              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary text-gray-700 placeholder-gray-500"
               aria-label="Full Name"
             />
           </div>
@@ -19,7 +19,7 @@ function ContactForm() {
               id="email"
               name="email"
               placeholder="Email"
-              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 text-gray-700 placeholder-gray-500"
+              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary text-gray-700 placeholder-gray-500"
               aria-label="Email"
             />
           </div>
@@ -29,7 +29,7 @@ function ContactForm() {
               id="phone"
               name="phone"
               placeholder="Phone Number"
-              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 text-gray-700 placeholder-gray-500"
+              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary text-gray-700 placeholder-gray-500"
               aria-label="Phone Number"
             />
           </div>
@@ -39,20 +39,20 @@ function ContactForm() {
               name="message"
               rows={6}
               placeholder="Message"
-              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 text-gray-700 placeholder-gray-500 resize-none"
+              className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary text-gray-700 placeholder-gray-500 resize-none"
               aria-label="Message"
             ></textarea>
           </div>
           <button
             type="submit"
-            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-4 rounded-xl transition-colors duration-200 text-lg"
+            className="w-full bg-primary hover:bg-primary text-black font-semibold py-4 rounded-xl transition-colors duration-200 text-lg"
           >
             Send Message
           </button>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default ContactForm
+export default ContactForm;

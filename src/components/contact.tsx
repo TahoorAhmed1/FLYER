@@ -17,7 +17,7 @@ function Contactus() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="bg-yellow-400 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
+              <div className="bg-primary w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
                 <MapPin className="w-7 h-7 text-black" />
               </div>
               <div className="font-semibold flex-grow">
@@ -32,7 +32,7 @@ function Contactus() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="bg-yellow-400 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
+              <div className="bg-primary w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
                 <Mail className="w-7 h-7 text-black" />
               </div>
               <div className="font-semibold flex-grow">
@@ -45,7 +45,7 @@ function Contactus() {
 
             {/* Opening Hours */}
             <div className="flex items-start gap-4">
-              <div className="bg-yellow-400 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
+              <div className="bg-primary w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0">
                 <Clock className="w-7 h-7 text-black" />
               </div>
               <div className="font-semibold flex-grow">

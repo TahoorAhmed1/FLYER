@@ -15,7 +15,6 @@ export default function WishlistPage() {
 
   return (
     <div className="relative bg-white min-h-screen">
-      {/* Top yellow bar */}
 
       <div className="max-w-4xl mx-auto px-4 py-8 md:px-8 md:py-12">
         {/* Header and Search */}

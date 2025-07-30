@@ -111,7 +111,7 @@ function Footer() {
               />
               <button
                 type="submit"
-                className="bg-yellow-400 text-[#1D1D1F] font-semibold px-5 w-32 mx-auto rounded-[10px]"
+                className="bg-primary text-[#1D1D1F] font-semibold px-5 w-32 mx-auto rounded-[10px]"
               >
                 Subscribe
               </button>

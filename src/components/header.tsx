@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { Logo } from "../assets/index";
+import NavigationButtons from "./fliter-header";
+import HeaderBar from "./top-header";
 
 function Header() {
   return (
     <div className=" bg-[#FFFEF3]">
+      <HeaderBar />
       <div className="flex  container items-center justify-between py-6">
         <div>
           <Image
@@ -37,6 +40,7 @@ function Header() {
           </button>
         </div>
       </div>
+      <NavigationButtons />
     </div>
   );
 }
