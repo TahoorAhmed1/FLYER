@@ -5,61 +5,63 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { offerProduct } from "@/assets";
+import Image from "next/image";
 
 export default function OffersSection() {
   const offers = [
     {
       name: "iPhone 14 pro",
-      image: "/placeholder.svg?height=120&width=120&text=iPhone+14",
+      image: offerProduct,
       discount: 18,
       category: "Electronics",
     },
     {
       name: "Cosmetics",
-      image: "/placeholder.svg?height=120&width=120&text=Cosmetics",
+      image: offerProduct,
       discount: 18,
       category: "Beauty",
     },
     {
       name: "Tomato",
-      image: "/placeholder.svg?height=120&width=120&text=Tomato",
+      image: offerProduct,
       discount: 18,
       category: "Fresh Produce",
     },
     {
       name: "Air Pods",
-      image: "/placeholder.svg?height=120&width=120&text=AirPods",
+      image: offerProduct,
       discount: 18,
       category: "Electronics",
     },
     {
       name: "Green Apples",
-      image: "/placeholder.svg?height=120&width=120&text=Green+Apples",
+      image: offerProduct,
       discount: 18,
       category: "Fresh Produce",
     },
     {
       name: "T-shirt",
-      image: "/placeholder.svg?height=120&width=120&text=T-shirt",
+      image: offerProduct,
       discount: 18,
       category: "Fashion",
     },
     {
       name: "Laptop",
-      image: "/placeholder.svg?height=120&width=120&text=Laptop",
+      image: offerProduct,
       discount: 25,
       category: "Electronics",
     },
     {
       name: "Milk",
-      image: "/placeholder.svg?height=120&width=120&text=Milk",
+      image: offerProduct,
       discount: 15,
       category: "Dairy",
     },
   ];
 
   return (
-    <div className="relative bg-white py-12  overflow-hidden">
+    <div className="relative bg-white my-14  overflow-hidden">
       <div className="relative container">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -99,35 +101,31 @@ export default function OffersSection() {
               },
               1280: {
                 slidesPerView: 6,
-                spaceBetween: 40,
+                spaceBetween: 30,
               },
             }}
             className="pb-12"
           >
             {offers.map((offer, index) => (
               <SwiperSlide key={index}>
-                <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100">
-                  {/* Image Section */}
-                  <div className="relative p-4 bg-gray-50 h-32 flex items-center justify-center">
-                    <img
-                      src={offer.image || "/placeholder.svg"}
+                <div className="bg-white my-2 border-[#F8F8F8] border rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group cursor-pointer">
+                  <div className=" w-full h-full flex items-center justify-center">
+                    <Image
+                      src={offer.image}
                       alt={offer.name}
-                      className="max-h-20 max-w-20 object-contain group-hover:scale-110 transition-transform duration-300"
+                      width={500}
+                      height={500}
+                      className="w-full  h-full object-contain transition-transform duration-300"
                     />
-
-                    {/* Discount Badge */}
-                    <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      -{offer.discount}%
-                    </div>
                   </div>
 
-                  {/* Content Section */}
-                  <div className="p-4">
-                    <h3 className="text-sm font-semibold text-gray-900 text-center group-hover:text-yellow-600 transition-colors duration-200">
-                      {offer.name}
+                  <div className="px-4 py-4">
+                    <p className="font-bold text-black text-xs mb-4">-15%</p>
+                    <h3 className="text-sm font-semibold  group-hover:text-primary text-primary transition-colors duration-200">
+                      ${offer.discount}.00
                     </h3>
-                    <p className="text-xs text-gray-500 text-center mt-1">
-                      {offer.category}
+                    <p className="text-base text-black font-bold   mt-1">
+                      {offer.name}
                     </p>
                   </div>
                 </div>

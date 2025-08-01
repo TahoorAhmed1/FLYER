@@ -42,35 +42,53 @@ body {
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
-
 }
-
 
 .brandoverlay2 {
   background-image: url("../assets/brand-overlay.png");
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
-
 }
 .retailerOverlay {
   background-image: url("../assets/retailer-overlay.png");
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
-
 }
+
 .contactOverlay {
   background-image: url("../assets/contact-overlay.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
 }
+.productDetailOverlay {
+  background-image: url("../assets/product-detail-line.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.shopcategorybackground {
+  background-image: url("../assets/shopcategory.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .aboutBackgroundImage {
   background-image: url("../assets/about/about.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 408.1600036621094px;
+  height: 410px;
+}
+
+.bannerImage {
+  background-image: url("../assets/banner1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 482px;
 }

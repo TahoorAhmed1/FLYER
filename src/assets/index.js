@@ -10,6 +10,12 @@ import Retailers from "./retailers.png"
 import Brand from "./brand.png"
 import one from "./1.png"
 import two from "./2.png"
+import category from "./category.png"
 import brandoverlay from "./brand-overlay.png"
+import banner from "./banner1.png"
+import retailerProduct from "./retailer-product.png"
+import offerProduct from "./offer-product.png"
+import productDetail from "./product_detail.png"
+import flyer from "./flyer.png"
 
-export {brandoverlay,two,one , Brand,Retailers, AppStore, Google,Logo, Home1,LineOverly  ,WhoWe,WhatWe,Collection}
+export { flyer, productDetail, offerProduct, retailerProduct, category, brandoverlay, two, one, Brand, Retailers, AppStore, Google, Logo, Home1, LineOverly, WhoWe, WhatWe, Collection, banner }

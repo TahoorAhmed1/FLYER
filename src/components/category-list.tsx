@@ -5,40 +5,42 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { category } from "@/assets";
+import Image from "next/image";
 
 export default function CategorySection() {
   const categories = [
     {
       name: "New Arrivals",
-      image: "/placeholder.svg?height=80&width=80",
+      image: category,
     },
     {
       name: "Dairy & Milk",
-      image: "/placeholder.svg?height=80&width=80",
+      image: category,
     },
     {
       name: "Fresh Produce",
-      image: "/placeholder.svg?height=80&width=80",
+      image: category,
     },
     {
       name: "Meat",
-      image: "/placeholder.svg?height=80&width=80",
+      image: category,
     },
     {
       name: "Snacks",
-      image: "/placeholder.svg?height=80&width=80",
+      image: category,
     },
     {
       name: "Frozen",
-      image: "/placeholder.svg?height=80&width=80",
+      image: category,
     },
     {
       name: "Beverages",
-      image: "/placeholder.svg?height=80&width=80",
+      image: category,
     },
     {
       name: "Bakery",
-      image: "/placeholder.svg?height=80&width=80",
+      image: category,
     },
   ];
 
@@ -86,15 +88,17 @@ export default function CategorySection() {
               <SwiperSlide key={index}>
                 <div className="flex flex-col items-center group cursor-pointer">
                   <div className="relative mb-4">
-                    <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                      <img
-                        src={category.image || "/placeholder.svg"}
+                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                      <Image
+                        src={category.image}
                         alt={category.name}
+                        width={500}
+                        height={500}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
                   </div>
-                  <h3 className="text-sm font-semibold text-gray-900 text-center group-hover:text-yellow-600 transition-colors duration-200">
+                  <h3 className="text-base font-semibold text-gray-900 text-center group-hover:text-yellow-600 transition-colors duration-200">
                     {category.name}
                   </h3>
                 </div>

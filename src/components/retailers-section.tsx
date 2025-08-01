@@ -5,61 +5,63 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { retailerProduct } from "@/assets";
+import Image from "next/image";
 
 export default function RetailersSection() {
   const retailers = [
     {
       name: "Panda",
-      logo: "/placeholder.svg?height=60&width=120&text=Panda",
+      logo: retailerProduct,
       flyers: 2,
       offers: 1487,
       color: "bg-green-50",
     },
     {
       name: "Lulu",
-      logo: "/placeholder.svg?height=60&width=120&text=Lulu",
+      logo: retailerProduct,
       flyers: 2,
       offers: 1487,
       color: "bg-red-50",
     },
     {
       name: "Carrefour",
-      logo: "/placeholder.svg?height=60&width=120&text=Carrefour",
+      logo: retailerProduct,
       flyers: 2,
       offers: 1487,
       color: "bg-blue-50",
     },
     {
       name: "Danube",
-      logo: "/placeholder.svg?height=60&width=120&text=Danube",
+      logo: retailerProduct,
       flyers: 2,
       offers: 1487,
       color: "bg-purple-50",
     },
     {
       name: "NewWood",
-      logo: "/placeholder.svg?height=60&width=120&text=NewWood",
+      logo: retailerProduct,
       flyers: 2,
       offers: 1487,
       color: "bg-orange-50",
     },
     {
       name: "Farm",
-      logo: "/placeholder.svg?height=60&width=120&text=Farm",
+      logo: retailerProduct,
       flyers: 2,
       offers: 1487,
       color: "bg-green-50",
     },
     {
       name: "Extra",
-      logo: "/placeholder.svg?height=60&width=120&text=Extra",
+      logo: retailerProduct,
       flyers: 3,
       offers: 2156,
       color: "bg-yellow-50",
     },
     {
       name: "Tamimi",
-      logo: "/placeholder.svg?height=60&width=120&text=Tamimi",
+      logo: retailerProduct,
       flyers: 1,
       offers: 892,
       color: "bg-indigo-50",
@@ -108,42 +110,39 @@ export default function RetailersSection() {
                 spaceBetween: 35,
               },
               1280: {
-                slidesPerView: 5.5,
-                spaceBetween: 40,
+                slidesPerView: 6,
+                spaceBetween: 30,
               },
             }}
             className="pb-12"
           >
             {retailers.map((retailer, index) => (
               <SwiperSlide key={index}>
-                <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden group cursor-pointer">
-                  {/* Logo Section */}
-                  <div
-                    className={`${retailer.color} p-6 flex items-center justify-center h-24`}
-                  >
-                    <img
-                      src={retailer.logo || "/placeholder.svg"}
-                      alt={retailer.name}
-                      className="max-h-12 max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+                <div className="bg-white group my-2  rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden group cursor-pointer">
+                  <Image
+                    width={500}
+                    height={500}
+                    src={retailer.logo}
+                    alt={retailer.name}
+                    className="max-h-40 max-w-full object-contain  transition-transform duration-300"
+                  />
 
-                  {/* Content Section */}
-                  <div className="p-4">
-                    <div className="text-center mb-4">
-                      <p className="text-sm text-gray-600 mb-1">
+                  <div className="py-4 px-2">
+                    <h2 className="text-[19px] text-primary font-semibold">
+                      Hyper Panda
+                    </h2>
+                    <div className=" mb-4">
+                      <p className="text-base text-[#29292E] mb-1">
                         <span className="font-semibold">
                           {retailer.flyers} flyers
                         </span>{" "}
-                        |{" "}
                         <span className="font-semibold">
                           {retailer.offers} offer(s)
                         </span>
                       </p>
                     </div>
 
-                    {/* Action Button */}
-                    <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded-md transition-colors duration-200 text-sm">
+                    <button className="w-full   bg-primary hover:bg-primary text-black font-bold py-2 px-4 rounded-md transition-colors duration-200 text-sm">
                       Check It Out
                     </button>
                   </div>
