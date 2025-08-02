@@ -6,7 +6,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { offerProduct } from "@/assets";
-import Image from "next/image";
+
+import OfferCard from "./offer-card";
 
 export default function OffersSection() {
   const offers = [
@@ -108,27 +109,7 @@ export default function OffersSection() {
           >
             {offers.map((offer, index) => (
               <SwiperSlide key={index}>
-                <div className="bg-white my-2 border-[#F8F8F8] border rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group cursor-pointer">
-                  <div className=" w-full h-full flex items-center justify-center">
-                    <Image
-                      src={offer.image}
-                      alt={offer.name}
-                      width={500}
-                      height={500}
-                      className="w-full  h-full object-contain transition-transform duration-300"
-                    />
-                  </div>
-
-                  <div className="px-4 py-4">
-                    <p className="font-bold text-black text-xs mb-4">-15%</p>
-                    <h3 className="text-sm font-semibold  group-hover:text-primary text-primary transition-colors duration-200">
-                      ${offer.discount}.00
-                    </h3>
-                    <p className="text-base text-black font-bold   mt-1">
-                      {offer.name}
-                    </p>
-                  </div>
-                </div>
+                <OfferCard index={index} offer={offer} />
               </SwiperSlide>
             ))}
           </Swiper>

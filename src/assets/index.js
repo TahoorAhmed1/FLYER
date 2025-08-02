@@ -13,9 +13,11 @@ import two from "./2.png"
 import category from "./category.png"
 import brandoverlay from "./brand-overlay.png"
 import banner from "./banner1.png"
+import banner2 from "./banner2.png"
 import retailerProduct from "./retailer-product.png"
 import offerProduct from "./offer-product.png"
 import productDetail from "./product_detail.png"
 import flyer from "./flyer.png"
+import fly from "./fly.png"
 
-export { flyer, productDetail, offerProduct, retailerProduct, category, brandoverlay, two, one, Brand, Retailers, AppStore, Google, Logo, Home1, LineOverly, WhoWe, WhatWe, Collection, banner }
+export { banner2, fly, flyer, productDetail, offerProduct, retailerProduct, category, brandoverlay, two, one, Brand, Retailers, AppStore, Google, Logo, Home1, LineOverly, WhoWe, WhatWe, Collection, banner }

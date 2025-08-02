@@ -1,9 +1,13 @@
+"use client";
 import Image from "next/image";
 import { Logo } from "../assets/index";
 import NavigationButtons from "./fliter-header";
 import HeaderBar from "./top-header";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function Header() {
+  const pathname = usePathname();
   return (
     <div className=" bg-[#FFFEF3]">
       <HeaderBar />
@@ -19,28 +23,43 @@ function Header() {
         </div>
         <div className="flex items-center gap-8">
           <ul className="flex items-center gap-8   text-[17px]   ">
-            <li className="hover:font-bold font-normal  transition-all hover:text-primary cursor-pointer">
+            <Link
+              href={"/"}
+              className="hover:font-bold font-normal   text-black transition-all hover:text-primary cursor-pointer"
+            >
               Home
-            </li>
-            <li className="hover:font-bold font-normal transition-all hover:text-primary cursor-pointer">
+            </Link>
+            <Link
+              href={"/about"}
+              className="hover:font-bold font-normal  text-black transition-all hover:text-primary cursor-pointer"
+            >
               About Us
-            </li>
-            <li className="hover:font-bold font-normal transition-all hover:text-primary cursor-pointer">
-              Solution
-            </li>
-            <li className="hover:font-bold font-normal transition-all hover:text-primary cursor-pointer">
+            </Link>
+            <Link
+              href={"/shop"}
+              className="hover:font-bold font-normal  text-black transition-all hover:text-primary cursor-pointer"
+            >
+              Shop
+            </Link>
+            <li className="hover:font-bold font-normal  text-black transition-all hover:text-primary cursor-pointer">
               Flyer Hive Mobile App
             </li>
-            <li className="hover:font-bold font-normal transition-all hover:text-primary cursor-pointer">
+            <Link
+              href={"/"}
+              className="hover:font-bold font-normal  text-black transition-all hover:text-primary cursor-pointer"
+            >
               Contact Us
-            </li>
+            </Link>
           </ul>
-          <button className=" bg-primary px-3 py-2 text-black font-semibold rounded-[10px] text-[18px]">
+          <Link
+            href={"/wishlist"}
+            className=" bg-primary hover:bg-primary/70 px-3 py-2 text-black font-semibold rounded-[10px] text-[18px]"
+          >
             Join Waitlist
-          </button>
+          </Link>
         </div>
       </div>
-      <NavigationButtons />
+      {pathname !== "/" && <NavigationButtons />}
     </div>
   );
 }

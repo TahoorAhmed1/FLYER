@@ -1,5 +1,6 @@
 import { Logo } from "@/assets";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function Footer() {
@@ -65,16 +66,16 @@ function Footer() {
             <h1 className="font-bold text-xl">Home</h1>
             <ul className="space-y-2 text-base">
               <li className="w-full">
-                <a href="/about-us">About Us</a>
+                <Link href="/about">About Us</Link>
               </li>
               <li className="w-full">
-                <a href="/services">Service Us</a>
+                <Link href="#">Service </Link>
               </li>
               <li className="w-full">
-                <a href="/contact-us">Contact</a>
+                <Link href="#">Contact</Link>
               </li>
               <li className="w-full">
-                <a href="/company">Company</a>
+                <Link href="#">Company</Link>
               </li>
             </ul>
           </div>

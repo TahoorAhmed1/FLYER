@@ -1,6 +1,7 @@
 import Contactus from "@/components/contact";
 import Download from "@/components/download";
 import WishlistPage from "@/components/wishlist/wishlist";
+import Link from "next/link";
 import React from "react";
 
 function page() {
@@ -11,7 +12,10 @@ function page() {
           Best Business Intelligence and <br /> Analytics Solutions in the
           market
         </h2>
-        <button className="bg-primary hover:bg-primary/80  px-6 py-3 text-black font-semibold rounded-[10px] text-[18px] transition-colors duration-200 flex items-center gap-2">
+        <Link
+          href={"/offer"}
+          className="bg-primary hover:bg-primary/80  px-6 py-3 text-black font-semibold rounded-[10px] text-[18px] transition-colors duration-200 flex items-center gap-2"
+        >
           View Latest Offers
           <svg
             width="16"
@@ -28,7 +32,7 @@ function page() {
               strokeLinejoin="round"
             />
           </svg>
-        </button>
+        </Link>
       </div>
       <WishlistPage />
       <Contactus />
