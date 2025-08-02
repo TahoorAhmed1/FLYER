@@ -15,7 +15,7 @@ function page() {
         <div>
           <Link
             href={"/offer"}
-            className="bg-primary w-[200px] hover:bg-primary/80  px-6 py-3 text-black font-semibold rounded-[10px] text-[18px] transition-colors duration-200 flex items-center gap-2"
+            className="bg-primary w-[230px] hover:bg-primary/80  px-6 py-3 text-black font-semibold rounded-[10px] text-[18px] transition-colors duration-200 flex items-center gap-2"
           >
             View Latest Offers
             <svg
