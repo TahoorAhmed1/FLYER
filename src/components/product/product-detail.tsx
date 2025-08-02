@@ -36,7 +36,7 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen  my-20  ">
-      <div className="productDetailOverlay py-5">
+      <div className="productDetailOverlay py-10">
         <div className="container ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             <div className="w-full">

@@ -70,7 +70,7 @@ const categories = [
 
 export default function ShopByCategory() {
   return (
-    <div className="shopcategorybackground py-10 my-16 bg-white">
+    <div className="shopcategorybackground py-12 my-16 bg-white">
       <div className="w-full container    ">
         <h2 className="text-5xl font-bold text-center mb-10 text-black">
           Shop By Category
