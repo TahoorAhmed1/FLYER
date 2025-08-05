@@ -153,7 +153,7 @@ export default function Signup({ isOpen, setIsOpen }: any) {
             </div>
           ) : (
             <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg">
-              <div className="mb-6 text-center">
+              <div className="mb-6 text-left">
                 <h2 className="text-2xl font-bold text-gray-900">Log in</h2>
                 <p className="text-sm text-gray-600">Welcome back!</p>
               </div>
@@ -193,7 +193,7 @@ export default function Signup({ isOpen, setIsOpen }: any) {
                   type="submit"
                   className="w-full rounded-md bg-primary  py-2 font-semibold text-black hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-primary  focus:ring-offset-2"
                 >
-                  Send Message
+                  Login
                 </button>
               </form>
             </div>
