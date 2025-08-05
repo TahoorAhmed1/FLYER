@@ -152,7 +152,7 @@ export default function Signup({ isOpen, setIsOpen }: any) {
               </div>
             </div>
           ) : (
-            <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg">
+            <div className="relative w-full max-w-lg rounded-xl bg-white shadow-lg">
               <button
                 onClick={toggleModal}
                 className="absolute right-4 top-4 cursor-pointer text-gray-600 hover:text-gray-900"
@@ -173,49 +173,53 @@ export default function Signup({ isOpen, setIsOpen }: any) {
                   />
                 </svg>
               </button>
-              <div className="mb-6 text-left">
-                <h2 className="text-2xl font-bold text-gray-900">Log in</h2>
-                <p className="text-sm text-gray-600">Welcome back!</p>
-              </div>
-              <form className="space-y-4">
-                <div>
-                  <label htmlFor="username" className="sr-only">
-                    Username
-                  </label>
-                  <input
-                    id="username"
-                    type="text"
-                    placeholder="Username"
-                    className="w-full rounded-md border border-[#E0E0E0] px-4 py-2 focus:border-primary  focus:outline-none focus:ring-1 focus:ring-primary "
-                  />
+              <div className="w-full max-w-lg rounded-xl bg-white p-8 shadow-lg">
+                <div className="mb-6 text-left">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-1">
+                    Log in
+                  </h2>
+                  <p className="text-base text-gray-600">Welcome back!</p>
                 </div>
-                <div>
-                  <label htmlFor="password" className="sr-only">
-                    Password
-                  </label>
-                  <input
-                    id="password"
-                    type="password"
-                    placeholder="Password"
-                    className="w-full rounded-md border border-[#E0E0E0] px-4 py-2 focus:border-primary  focus:outline-none focus:ring-1 focus:ring-primary "
-                  />
-                </div>
-                <div className="text-center text-sm text-gray-600">
-                  New here?{" "}
+                <form className="space-y-4">
+                  <div>
+                    <label htmlFor="username" className="sr-only">
+                      Username
+                    </label>
+                    <input
+                      id="username"
+                      type="text"
+                      placeholder="Username"
+                      className="w-full rounded-md border border-[#E0E0E0] px-4 py-2 focus:border-primary  focus:outline-none focus:ring-1 focus:ring-primary "
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="password" className="sr-only">
+                      Password
+                    </label>
+                    <input
+                      id="password"
+                      type="password"
+                      placeholder="Password"
+                      className="w-full rounded-md border border-[#E0E0E0] px-4 py-2 focus:border-primary  focus:outline-none focus:ring-1 focus:ring-primary "
+                    />
+                  </div>
+                  <div className="text-center text-sm text-gray-600">
+                    New here?{" "}
+                    <button
+                      onClick={() => setIsLogin(true)}
+                      className="font-medium text-primary cursor-pointer  hover:underline"
+                    >
+                      Create an account
+                    </button>
+                  </div>
                   <button
-                    onClick={() => setIsLogin(true)}
-                    className="font-medium text-primary cursor-pointer  hover:underline"
+                    type="submit"
+                    className="w-full rounded-md bg-primary  py-2 font-semibold text-black hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-primary  focus:ring-offset-2"
                   >
-                    Create an account
+                    Login
                   </button>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full rounded-md bg-primary  py-2 font-semibold text-black hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-primary  focus:ring-offset-2"
-                >
-                  Login
-                </button>
-              </form>
+                </form>
+              </div>
             </div>
           )}
         </div>
