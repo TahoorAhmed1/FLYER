@@ -153,6 +153,26 @@ export default function Signup({ isOpen, setIsOpen }: any) {
             </div>
           ) : (
             <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg">
+              <button
+                onClick={toggleModal}
+                className="absolute right-4 top-4 cursor-pointer text-gray-600 hover:text-gray-900"
+                aria-label="Close"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
               <div className="mb-6 text-left">
                 <h2 className="text-2xl font-bold text-gray-900">Log in</h2>
                 <p className="text-sm text-gray-600">Welcome back!</p>
