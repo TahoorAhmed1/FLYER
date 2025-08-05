@@ -5,9 +5,13 @@ import NavigationButtons from "./fliter-header";
 import HeaderBar from "./top-header";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import WaitlistModal from "./app-modal";
+import AppModal from "./app-modal";
+import { useState } from "react";
 
 function Header() {
   const pathname = usePathname();
+  const [mobilePop, setMobilePop] = useState(false);
   return (
     <div className=" bg-[#FFFEF3]">
       <HeaderBar />
@@ -41,11 +45,14 @@ function Header() {
             >
               Shop
             </Link>
-            <li className="hover:font-bold font-normal  text-black transition-all hover:text-primary cursor-pointer">
+            <li
+              onClick={() => setMobilePop(true)}
+              className="hover:font-bold font-normal  text-black transition-all hover:text-primary cursor-pointer"
+            >
               Flyer Hive Mobile App
             </li>
             <Link
-              href={"/"}
+              href={"/contact-us"}
               className="hover:font-bold font-normal  text-black transition-all hover:text-primary cursor-pointer"
             >
               Contact Us
@@ -59,6 +66,7 @@ function Header() {
           </Link>
         </div>
       </div>
+      {mobilePop && <AppModal setMobilePop={setMobilePop} />}
       {pathname !== "/" && <NavigationButtons />}
     </div>
   );

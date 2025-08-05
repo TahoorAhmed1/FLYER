@@ -3,10 +3,19 @@
 import { ChevronDown } from "lucide-react";
 import Signup from "./auth/signup-form";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function HeaderBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [language, setLanguage] = useState("ENGLISH");
 
+  const toggleDropdown = () => setOpen(!open);
+
+  const handleSelect = (lang: string) => {
+    setLanguage(lang);
+    setOpen(false);
+  };
   return (
     <>
       <div className="bg-primary ">
@@ -14,13 +23,35 @@ export default function HeaderBar() {
           <div className="flex items-center gap-4">
             <button className="flex items-center gap-2 text-black font-medium hover:bg-primary px-3 py-1 rounded transition-colors duration-200">
               <span className="text-sm">SAUDI ARABIA - JEDDAH</span>
-              <ChevronDown className="w-4 h-4" />
+              {/* <ChevronDown className="w-4 h-4" /> */}
             </button>
 
-            <button className="flex items-center gap-2 text-black font-medium hover:bg-primary px-3 py-1 rounded transition-colors duration-200">
-              <span className="text-sm">ENGLISH</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
+            <div className="relative inline-block text-left">
+              <button
+                onClick={toggleDropdown}
+                className="flex items-center gap-2 cursor-pointer text-black font-medium hover:bg-primary px-3 py-1 rounded transition-colors duration-200"
+              >
+                <span className="text-sm">{language}</span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              {open && (
+                <div className="absolute z-10 mt-2 w-32 bg-white shadow-md border rounded">
+                  <button
+                    onClick={() => handleSelect("ENGLISH")}
+                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    English
+                  </button>
+                  <button
+                    onClick={() => handleSelect("ARABIC")}
+                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    Arabic
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-6">
@@ -48,7 +79,10 @@ export default function HeaderBar() {
               <span className="text-[15px] font-normal">Login or Register</span>
             </button>
 
-            <button className="flex items-center gap-2 text-black font-medium hover:bg-primary px-3  rounded transition-colors duration-200">
+            <Link
+              href={"/wishlist"}
+              className="flex items-center gap-2 text-black font-medium hover:bg-primary px-3  rounded transition-colors duration-200"
+            >
               <svg
                 width="24"
                 height="24"
@@ -107,7 +141,7 @@ export default function HeaderBar() {
               </svg>
 
               <span className="text-[15px] font-normal">My Offers</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

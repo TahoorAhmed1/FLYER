@@ -19,5 +19,7 @@ import offerProduct from "./offer-product.png"
 import productDetail from "./product_detail.png"
 import flyer from "./flyer.png"
 import fly from "./fly.png"
+import android from "./android.png"
+import contact from "./contact-us.png"
 
-export { banner2, fly, flyer, productDetail, offerProduct, retailerProduct, category, brandoverlay, two, one, Brand, Retailers, AppStore, Google, Logo, Home1, LineOverly, WhoWe, WhatWe, Collection, banner }
+export { contact, android, banner2, fly, flyer, productDetail, offerProduct, retailerProduct, category, brandoverlay, two, one, Brand, Retailers, AppStore, Google, Logo, Home1, LineOverly, WhoWe, WhatWe, Collection, banner }

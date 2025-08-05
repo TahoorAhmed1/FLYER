@@ -92,3 +92,10 @@ body {
   background-repeat: no-repeat;
   height: 482px;
 }
+.ContactUsImage {
+  background-image: url("../assets/contact-us.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 844.949462890625px;
+}

@@ -84,16 +84,16 @@ function Footer() {
             <h1 className="font-bold text-xl">Company</h1>
             <ul className="space-y-2 text-base w-full">
               <li className="w-full">
-                <a href="/partnership">Partnership</a>
+                <a href="#">Partnership</a>
               </li>
               <li className="w-full">
-                <a href="/terms">Terms of Use</a>
+                <a href="#">Terms of Use</a>
               </li>
               <li className="w-full">
-                <a href="/privacy-policy">Privacy</a>
+                <Link href="/privacy-policy">Privacy</Link>
               </li>
               <li className="w-full">
-                <a href="/sitemap">Sitemap</a>
+                <a href="#">Sitemap</a>
               </li>
             </ul>
           </div>
