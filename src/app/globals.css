@@ -7,7 +7,7 @@
 }
 
 .container {
-  @apply max-w-[1200px]  md:px-8 px-3 mx-auto;
+  @apply max-w-[1200px]  md:px-8 px-3 mx-auto overflow-hidden;
 }
 
 @theme inline {

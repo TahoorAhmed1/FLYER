@@ -42,7 +42,7 @@ function Hero() {
               </Link>
             </div>
           </div>
-          <div className=" flex  items-center gap-12">
+          <div className=" flex  items-center gap-12 lg:m-0 mt-10 mb-5">
             <svg
               width="156"
               height="36"
@@ -188,11 +188,11 @@ function Hero() {
           </div>
         </div>
 
-        <div className="w-full pl-10">
+        <div className="w-full lg:pl-10">
           <Image
             src={Home1}
             alt="Weekly Savings App"
-            className="w-[468px] h-full"
+            className="lg:w-[468px] w-full h-full"
             width={600}
             height={400}
             priority

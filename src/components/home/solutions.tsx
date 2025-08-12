@@ -5,30 +5,34 @@ import React from "react";
 function Solutions() {
   return (
     <div className="container">
-      <div className="mb-20">
-        <h2 className=" text-7xl font-bold mb-5 ">Solutions</h2>
-        <p className="text-[24px] font-medium">
+      {/* Header */}
+      <div className="mb-12 lg:mb-20">
+        <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-3 lg:mb-5">
+          Solutions
+        </h2>
+        <p className="text-base sm:text-lg lg:text-[24px] font-medium leading-relaxed">
           Business intelligence and Analytics can dramatically improve your
           Store or Product permformance
         </p>
       </div>
 
-      <div className="mt-10 space-y-20">
-        <div className="flex retailerOverlay py-16 px-2 items-center gap-4">
+      <div className="mt-8 lg:mt-10 space-y-12 lg:space-y-20">
+        {/* Retailers */}
+        <div className="flex flex-col lg:flex-row retailerOverlay py-10 lg:py-16 px-2 items-start lg:items-center gap-6 lg:gap-4">
           <Image
             src={one}
-            className="w-[113px] h-[113px]"
             alt="root"
             width={1000}
             height={1000}
+            className="w-16 h-16 sm:w-20 sm:h-20 lg:w-[113px] lg:h-[113px] shrink-0"
           />
 
-          <div className="bg-[#1C1C1D] rounded-[30px] px-[30px] py-[35px] grid grid-cols-3 gap-4 items-center justify-between">
+          <div className="bg-[#1C1C1D] rounded-[20px] lg:rounded-[30px] px-4 sm:px-6 lg:px-[30px] py-6 sm:py-8 lg:py-[35px] grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-4 items-center">
             <div>
-              <h2 className="text-primary font-semibold  text-6xl mb-5 ">
+              <h2 className="text-primary font-semibold text-4xl sm:text-5xl lg:text-6xl mb-3 lg:mb-5">
                 Retailers
               </h2>
-              <p className="text-[17px] text-white">
+              <p className="text-sm sm:text-base lg:text-[17px] text-white leading-relaxed">
                 Join leading supermarkets and retail stores to publish unlimited
                 flyers and offers. BI in retail helps retailers grow market
                 share. Reach thousands of active users seeking deals and acquire
@@ -37,34 +41,37 @@ function Solutions() {
                 promotion budget and ROI.
               </p>
             </div>
-            <div className=" w-full -mt-24 h-[395px] col-span-2">
+
+            <div className="w-full md:col-span-2 -mt-4 md:-mt-10 lg:-mt-24 h-56 sm:h-72 md:h-80 lg:h-[395px]">
               <Image
                 src={Retailers}
                 alt="Who"
                 width={1000}
                 height={1000}
-                className=" w-full h-full "
+                className="w-full h-full object-contain"
               />
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 brandoverlay2 py-16 px-2 ">
-          <div className="bg-[#1C1C1D] rounded-[30px] px-[30px]  py-[35px] grid grid-cols-3 gap-4 items-center justify-between">
-            <div className=" w-full -mt-24 h-[395px] col-span-2">
+        {/* Brands */}
+        <div className="flex flex-col-reverse lg:flex-row items-start lg:items-center gap-6 lg:gap-4 brandoverlay2 py-10 lg:py-16 px-2">
+          <div className="bg-[#1C1C1D] rounded-[20px] lg:rounded-[30px] px-4 sm:px-6 lg:px-[30px] py-6 sm:py-8 lg:py-[35px] grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-4 items-center">
+            <div className="w-full md:col-span-2 -mt-4 md:-mt-10 lg:-mt-24 h-56 sm:h-72 md:h-80 lg:h-[395px]">
               <Image
                 src={Brand}
                 alt="Brand"
                 width={1000}
                 height={1000}
-                className=" w-full h-full "
+                className="w-full h-full object-contain"
               />
             </div>
+
             <div>
-              <h2 className="text-primary font-semibold  text-6xl mb-5 ">
+              <h2 className="text-primary font-semibold text-4xl sm:text-5xl lg:text-6xl mb-3 lg:mb-5">
                 Brands
               </h2>
-              <p className="text-[17px] text-white">
+              <p className="text-sm sm:text-base lg:text-[17px] text-white leading-relaxed">
                 Track your brand's promotions and compare them with competitors
                 using our Business Intelligence & Analytics solutions. With over
                 6 million offers and 266,000 new offers added monthly, our
@@ -73,12 +80,13 @@ function Solutions() {
               </p>
             </div>
           </div>
+
           <Image
             src={two}
-            className="w-[113px] h-[113px]"
             alt="root"
             width={1000}
             height={1000}
+            className="w-16 h-16 sm:w-20 sm:h-20 lg:w-[113px] lg:h-[113px] shrink-0"
           />
         </div>
       </div>

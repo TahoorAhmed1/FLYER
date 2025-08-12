@@ -4,43 +4,52 @@ import Image from "next/image";
 
 export default function AppModal({ setMobilePop }: any) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center backdrop-blur-xs justify-center bg-black/10  p-4">
-      <div className="relative w-full max-w-[650px] max-h-[600px] flex items-center justify-center overflow-hidden rounded-2xl   bg-white p-16  text-center shadow-lg">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-xs p-4 sm:p-6">
+      {/* modal */}
+      <div className="relative w-full max-w-[650px] max-h-[85vh] overflow-hidden rounded-2xl bg-white p-6 sm:p-10 md:p-16 text-center shadow-lg">
+        {/* bg visual (kept) */}
         <Image
           src={android}
           width={500}
           height={500}
-          className="absolute right-0 bottom-0 w-auto  h-[500px] object-contain"
+          className="pointer-events-none select-none absolute right-0 bottom-0 h-[240px] sm:h-[360px] md:h-[500px] w-auto object-contain"
           alt="root"
-        ></Image>
+          priority={false}
+        />
+
+        {/* close */}
         <button
           onClick={() => setMobilePop(false)}
-          className="absolute cursor-pointer right-4 top-4 text-black-primary hover:opacity-75"
+          className="absolute cursor-pointer right-3 top-3 sm:right-4 sm:top-4 rounded-full p-1.5 text-black-primary hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-black/20"
           aria-label="Close"
         >
           <X className="h-6 w-6" />
         </button>
 
-        <div className="relative z-10 flex flex-col items-center gap-2">
-          <h2 className="text-4xl font-bold text-black-primary">
-            We love Android
+        {/* scroll-safe content */}
+        <div className="relative z-10 mx-auto flex max-h-[77vh] flex-col items-center gap-2 overflow-y-auto px-1">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black-primary">
+            We love Android{" "}
             <span role="img" aria-label="heart eyes emoji">
               😍
             </span>
           </h2>
-          <p className="text-lg font-bold text-black">
+
+          <p className="text-base sm:text-lg font-bold text-black">
             and are cooking up an amazing app! Join our waitlist to be the first
             to know when it&apos;s ready.
           </p>
 
-          <div className="w-full rounded-2xl bg-primary px-8 py-6 mt-8 border-black border">
-            <div className="flex items-center justify-between gap-2  font-bold text-black ">
+          {/* card */}
+          <div className="w-full rounded-2xl bg-primary px-4 sm:px-6 md:px-8 py-5 sm:py-6 mt-6 sm:mt-8 border border-black">
+            <div className="flex items-center justify-between gap-2 font-bold text-black">
               <svg
-                width="38"
-                height="40"
+                width="30"
+                height="32"
                 viewBox="0 0 40 42"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="shrink-0 sm:w-[38px] sm:h-[40px]"
               >
                 <path
                   d="M1.06464 1.85889C0.601205 2.33188 0.333008 3.06829 0.333008 4.02198V38.0392C0.333008 38.9929 0.601205 39.7293 1.06464 40.2023L1.17902 40.3062L20.7299 21.2517V20.8018L1.17902 1.74737L1.06464 1.85889Z"
@@ -59,12 +68,13 @@ export default function AppModal({ setMobilePop }: any) {
                   fill="black"
                 />
               </svg>
-              <p className="font-semibold text-[24px]">
+              <p className="font-semibold text-xl sm:text-2xl">
                 Join HelloCity Android Wishlist
               </p>
             </div>
 
-            <div className="flex w-full mt-4  gap-4">
+            {/* input row */}
+            <div className="mt-4 flex w-full flex-col sm:flex-row gap-3 sm:gap-4">
               <input
                 type="email"
                 placeholder="Enter your email address"
@@ -76,14 +86,16 @@ export default function AppModal({ setMobilePop }: any) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:gap-2 mt-8 w-full">
-            <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#FFEFC6] bg-gradient-to-t from-primary  px-5 py-2 font-bold text-black-primary shadow-md transition-colors ">
+          {/* store buttons */}
+          <div className="mt-6 sm:mt-8 w-full flex flex-col gap-3 sm:flex-row sm:gap-2">
+            <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#FFEFC6] bg-gradient-to-t from-primary px-5 py-2 font-bold text-black-primary shadow-md transition-colors">
               <svg
-                width="39"
-                height="46"
+                width="30"
+                height="36"
                 viewBox="0 0 37 44"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="shrink-0 sm:w-[39px] sm:h-[46px]"
               >
                 <path
                   d="M30.148 23.354C30.0977 17.8722 34.7254 15.2053 34.937 15.0811C32.3162 11.3342 28.2539 10.8223 26.8264 10.7814C23.4146 10.4294 20.1051 12.7833 18.3671 12.7833C16.5944 12.7833 13.9181 10.8155 11.0336 10.8733C7.32167 10.9294 3.84915 13.0367 1.94464 16.3091C-1.98579 22.9815 0.945554 32.7868 4.71121 38.1801C6.5949 40.8215 8.79601 43.7707 11.6771 43.667C14.4957 43.553 15.5485 41.9049 18.9499 41.9049C22.3201 41.9049 23.3088 43.667 26.2471 43.6007C29.2721 43.553 31.1766 40.9474 32.9944 38.2822C35.1712 35.2547 36.0454 32.2731 36.0801 32.1201C36.009 32.0962 30.2053 29.9243 30.148 23.354Z"
@@ -95,17 +107,19 @@ export default function AppModal({ setMobilePop }: any) {
                 />
               </svg>
               <div className="w-full">
-                <p className="text-sm w-full">Download on the </p>
-                <p className="text-2xl font-bold">App Store</p>
+                <p className="text-xs sm:text-sm">Download on the</p>
+                <p className="text-xl sm:text-2xl font-bold">App Store</p>
               </div>
             </button>
-            <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#FFEFC6] bg-gradient-to-t from-primary  px-5 py-2 text-lg font-bold text-black-primary shadow-md transition-colors ">
+
+            <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#FFEFC6] bg-gradient-to-t from-primary px-5 py-2 text-lg font-bold text-black-primary shadow-md transition-colors">
               <svg
-                width="41"
-                height="45"
+                width="32"
+                height="36"
                 viewBox="0 0 43 47"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="shrink-0 sm:w-[41px] sm:h-[45px]"
               >
                 <path
                   d="M0.848045 2.52704C0.335616 3.05004 0.0390625 3.86431 0.0390625 4.91883V42.5327C0.0390625 43.5872 0.335616 44.4015 0.848045 44.9245L0.974519 45.0393L22.5925 23.9703V23.4728L0.974519 2.40373L0.848045 2.52704Z"
@@ -125,8 +139,8 @@ export default function AppModal({ setMobilePop }: any) {
                 />
               </svg>
               <div>
-                <p className="text-sm">GET IT ON</p>
-                <p className="text-2xl">Google Play</p>
+                <p className="text-xs sm:text-sm">GET IT ON</p>
+                <p className="text-xl sm:text-2xl">Google Play</p>
               </div>
             </button>
           </div>

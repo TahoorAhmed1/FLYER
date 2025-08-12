@@ -7,15 +7,17 @@ import React from "react";
 function page() {
   return (
     <div>
-      <div className="aboutBackgroundImage flex justify-center items-center flex-col gap-10 ">
-        <h2 className="font-semibold text-white text-7xl text-center  text-centertext-center">
+      {/* Hero */}
+      <div className="aboutBackgroundImage flex min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh] items-center justify-center flex-col gap-6 sm:gap-8 px-4 sm:px-6 text-center">
+        <h2 className="font-semibold text-white text-3xl sm:text-5xl md:text-6xl xl:text-7xl leading-tight">
           Best Business Intelligence and <br /> Analytics Solutions in the
           market
         </h2>
+
         <div>
           <Link
             href={"/offer"}
-            className="bg-primary w-[230px] hover:bg-primary/80  px-6 py-3 text-black font-semibold rounded-[10px] text-[18px] transition-colors duration-200 flex items-center gap-2"
+            className="bg-primary hover:bg-primary/80 px-6 py-3 text-black font-semibold rounded-[10px] text-base sm:text-lg md:text-[18px] transition-colors duration-200 inline-flex items-center gap-2 w-full sm:w-auto"
           >
             View Latest Offers
             <svg
@@ -24,6 +26,7 @@ function page() {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               <path
                 d="M5 12H19M19 12L12 5M19 12L12 19"
@@ -37,6 +40,7 @@ function page() {
         </div>
       </div>
 
+      {/* Sections */}
       <WhoWeAre />
       <WhatWeDo />
       <Download />

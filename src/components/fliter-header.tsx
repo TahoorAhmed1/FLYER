@@ -1,30 +1,26 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 export default function NavigationButtons() {
   return (
-    <div className="flex justify-center items-center gap-2 pt-2 pb-4 container">
+    <div className="flex flex-wrap justify-center items-center gap-2 pt-2 pb-4 container px-2">
       <Link
-        href={"/retailers"}
-        className="bg-primary hover:bg-primary text-black font-semibold px-3 py-1.5 text-[16px] rounded-md flex items-center gap-2 transition-colors duration-200"
+        href="/retailers"
+        className="bg-primary hover:bg-primary text-black font-semibold px-3 py-1.5 text-sm sm:text-base rounded-md flex items-center gap-2 transition-colors duration-200 w-full sm:w-auto justify-center"
       >
         RETAILERS
-        {/* <ChevronDown className="w-4 h-4" /> */}
       </Link>
 
       <Link
-        href={"/category"}
-        className="bg-primary hover:bg-primary text-black font-semibold px-3 py-1.5 text-[16px] rounded-md flex items-center gap-2 transition-colors duration-200"
+        href="/category"
+        className="bg-primary hover:bg-primary text-black font-semibold px-3 py-1.5 text-sm sm:text-base rounded-md flex items-center gap-2 transition-colors duration-200 w-full sm:w-auto justify-center"
       >
         CATEGORIES
-        {/* <ChevronDown className="w-4 h-4" /> */}
       </Link>
 
-      <button className="bg-primary hover:bg-primary text-black font-semibold px-3 py-1.5 text-[16px] rounded-md flex items-center gap-2 transition-colors duration-200">
+      <button className="bg-primary hover:bg-primary text-black font-semibold px-3 py-1.5 text-sm sm:text-base rounded-md flex items-center gap-2 transition-colors duration-200 w-full sm:w-auto justify-center">
         COUPONS & DEALS
-        {/* <ChevronDown className="w-4 h-4" /> */}
       </button>
     </div>
   );
