@@ -1,23 +1,45 @@
-import Image from "next/image"
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-export default function FlyerCard({ logoSrc, storeName, flyersCount, offersCount }: any) {
+function FlyerCard({ flyer }: any) {
+  const validFrom = flyer?.valid_from ? new Date(flyer.valid_from) : null;
+  const validTo = flyer?.valid_to ? new Date(flyer.valid_to) : null;
+  const today = new Date();
+
+
+  const formatDate = (date: Date) =>
+    date.toLocaleDateString("en-GB", { day: "2-digit", month: "short" });
+
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center min-h-[200px] justify-between">
-      <div className="flex-shrink-0 mb-4">
+    <Link
+      href={`/flyer/${flyer?.id}`}
+      className="bg-white rounded-lg shadow-sm border border-[#000000]/10 hover:shadow-lg my-1 transition-shadow duration-300 overflow-hidden cursor-pointer"
+    >
         <Image
-          src={logoSrc}
-          alt={`${storeName} logo`}
-          width={100}
-          height={100}
-          className="object-contain"
+          width={500}
+          height={500}
+          src={flyer?.file_url}
+          alt={flyer?.title ?? "Flyer image"}
+          className="h-[240px] w-full object-cover"
         />
+
+      
+
+      <div className="py-4 px-2">
+        {validFrom && validTo && (
+          <p className="text-sm text-black font-semibold text-[17px] mb-3">
+            {formatDate(validFrom)} – {formatDate(validTo)}
+          </p>
+        )}
+
+        {/* Flyer Title */}
+        <h2 className="text-lg font-semibold text-primary text-[18px] mb-5">
+          {flyer?.title ?? "Untitled Flyer"}
+        </h2>
       </div>
-      <div className="flex-grow flex flex-col justify-center">
-        <h3 className="text-lg font-semibold mb-1">{storeName}</h3>
-        <p className="text-card-yellow-text text-sm">
-          {flyersCount} flyers | {offersCount} Offer(s)
-        </p>
-      </div>
-    </div>
-  )
+    </Link>
+  );
 }
+
+export default FlyerCard;

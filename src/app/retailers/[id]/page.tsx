@@ -2,84 +2,37 @@ import { fly } from "@/assets";
 import BannerSlider from "@/components/banner-slider";
 import Contactus from "@/components/contact";
 import Download from "@/components/download";
+import FlyerCard from "@/components/flyer-card";
 import Google from "@/components/google-store";
 import OffersSection from "@/components/offer-product";
 import RetailerCard from "@/components/retailer-card";
 import React from "react";
 
-function page() {
-  const retailers = [
-    {
-      name: "NewWood",
-      logo: fly,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: fly,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: fly,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: fly,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: fly,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: fly,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: fly,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "Farm",
-      logo: fly,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-green-50",
-    },
-    {
-      name: "Extra",
-      logo: fly,
-      flyers: 3,
-      offers: 2156,
-      color: "bg-yellow-50",
-    },
-    {
-      name: "Tamimi",
-      logo: fly,
-      flyers: 1,
-      offers: 892,
-      color: "bg-indigo-50",
-    },
-  ];
+
+async function getRetailerFlyer(id: string) {
+  try {
+    // const cookieStore =await cookies(); // no need for await
+    // const token = cookieStore.get("token")?.value;
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/api/client/flyer/user/${id}`);
+
+    if (!res.ok) throw new Error("Failed to fetch product");
+
+    const data = await res.json();
+    return data?.data || null;
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return null;
+  }
+
+}
+
+async function page({ params }: { params: { id: string }}) {
+ 
+   let pa=await params
+  const retailers = await getRetailerFlyer(pa.id);
+  console.log('retailers', retailers)
   return (
     <div>
       <BannerSlider />
@@ -104,8 +57,8 @@ function page() {
       <div className="my-10">
         <h2 className="text-6xl text-center font-bold mb-5 ">Flyers </h2>
         <div className="grid grid-cols-5 container gap-10  ">
-          {retailers.map((retailer, index) => (
-            <RetailerCard retailer={retailer} />
+          {retailers?.map((flyer:any, index:any) => (
+            <FlyerCard flyer={flyer} key={index} />
           ))}
         </div>
       </div>

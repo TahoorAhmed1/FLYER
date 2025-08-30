@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import AppModal from "./app-modal";
 import { useEffect, useRef, useState } from "react";
 
-function Header() {
+function Header({user}:any) {
   const pathname = usePathname();
   const [mobilePop, setMobilePop] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,10 +35,10 @@ function Header() {
 
   return (
     <div className="bg-[#FFFEF3]">
-      <HeaderBar />
+      <HeaderBar user={user} />
 
       {/* main header */}
-      <div className="container relative z-50 flex items-center justify-between py-4 lg:py-6 px-4">
+      <div className="container relative  flex items-center justify-between py-4 lg:py-6 px-4">
         {/* logo */}
         <div className="flex items-center">
           <Image

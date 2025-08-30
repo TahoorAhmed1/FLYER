@@ -4,117 +4,103 @@ import { useState } from "react";
 import { ProductImageGallery } from "./product-image-gallery";
 import { StarRating } from "./star-rating";
 import { ExpandableSection } from "./expandable-section";
-import { productDetail } from "@/assets";
 import Contactus from "../contact";
 import Download from "../download";
 import OffersSection from "../offer-product";
 
-const productData = {
-  name: "iPhone 14 pro",
-  originalPrice: 7.12,
-  salePrice: 5.23,
-  discount: 15,
-  rating: 4,
-  reviewCount: 19,
-  images: [productDetail],
-};
+export default function ProductDetail({ product }: any) {
+  console.log("product", product);
 
-export default function ProductDetail() {
+  // Manage current image index for gallery
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handlePreviousImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? productData.images.length - 1 : prev - 1
-    );
-  };
+  // Extract data safely from product object
+  const {
+    product_name,
+    description,
+    price,
+    original_Price,
+    image_url,
+  } = product;
 
-  const handleNextImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === productData.images.length - 1 ? 0 : prev + 1
-    );
-  };
+  // Calculate discount percentage
+  const discount = original_Price
+    ? Math.round(
+        ((parseFloat(original_Price) - parseFloat(price)) /
+          parseFloat(original_Price)) *
+          100
+      )
+    : 0;
 
   return (
-    <div className="min-h-screen  my-20  ">
+    <div className="min-h-screen my-20">
       <div className="productDetailOverlay py-10">
-        <div className="container ">
+        <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            {/* Product Images */}
             <div className="w-full">
               <ProductImageGallery
-                images={productData.images}
-                currentIndex={currentImageIndex}
-                onPrevious={handlePreviousImage}
-                onNext={handleNextImage}
+                images={image_url} // expects an array
               />
             </div>
 
-            {/* Product Information */}
+            {/* Product Info */}
             <div className="w-full space-y-6">
-              {/* Product Title */}
+              {/* Product Name */}
               <h1 className="text-3xl font-bold text-gray-900">
-                {productData.name}
+                {product_name}
               </h1>
 
-              {/* Price Section */}
+              {/* Price & Discount */}
               <div className="flex items-center gap-4">
-                <div className="bg-primary text-black px-3 py-1 rounded-md font-bold text-sm">
-                  -{productData.discount}%
-                </div>
+                {discount > 0 && (
+                  <div className="bg-primary text-black px-3 py-1 rounded-md font-bold text-sm">
+                    -{discount}%
+                  </div>
+                )}
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-500 line-through text-lg">
-                    ${productData.originalPrice.toFixed(2)}
-                  </span>
+                  {original_Price && (
+                    <span className="text-gray-500 line-through text-lg">
+                      {original_Price}
+                    </span>
+                  )}
                 </div>
               </div>
 
-              <div className="text-4xl font-bold text-gray-900">
-                ${productData.salePrice.toFixed(2)}
-              </div>
+              <div className="text-4xl font-bold text-gray-900">{price}</div>
 
-              {/* Rating */}
-              <StarRating
-                rating={productData.rating}
-                reviewCount={productData.reviewCount}
-              />
+              {/* Rating - placeholder since your data doesn't have it */}
+              <StarRating rating={4.5} reviewCount={12} />
 
-              {/* Add to Wishlist Button */}
+              {/* Wishlist Button */}
               <button className="bg-primary hover:bg-primary text-black font-semibold px-6 py-2 rounded-xl transition-colors duration-200">
                 Add to Wishlist
               </button>
 
-              {/* Description Section */}
+              {/* Description */}
               <div className="space-y-4">
                 <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
                   Description
                 </h2>
 
-                <div className="space-y-0">
-                  <ExpandableSection title="Overview" defaultExpanded={true}>
-                    <p>
-                      Our glow-up of the Pornstar Martini.Tart passionfruit,
-                      soft vanilla, and functional botanicals support calm
-                      clarity and elevated energy. Tropical sparkle with
-                      botanical depth.
-                    </p>
-                    <p className="mt-2">
-                      Sip solo or pour over ice for a party moment with no
-                      regrets.
-                    </p>
-                  </ExpandableSection>
+                <ExpandableSection title="Overview" defaultExpanded={true}>
+                  <p>{description}</p>
+                </ExpandableSection>
 
-                  <ExpandableSection title="Materials">
-                    <p>
-                      Premium materials including aerospace-grade aluminum,
-                      ceramic shield front, and precision-milled back glass.
-                      Water resistant to IP68 standard.
-                    </p>
-                  </ExpandableSection>
-                </div>
+                <ExpandableSection title="Materials">
+                  <p>
+                    Premium materials including aerospace-grade aluminum,
+                    ceramic shield front, and precision-milled back glass.
+                    Water resistant to IP68 standard.
+                  </p>
+                </ExpandableSection>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Additional Sections */}
       <OffersSection />
       <Contactus />
       <Download />

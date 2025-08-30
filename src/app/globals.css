@@ -99,3 +99,8 @@ body {
   background-repeat: no-repeat;
   height: 844.949462890625px;
 }
+
+
+ button {
+  cursor: pointer;
+ }
