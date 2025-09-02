@@ -7,15 +7,14 @@ import { ExpandableSection } from "./expandable-section";
 import Contactus from "../contact";
 import Download from "../download";
 import OffersSection from "../offer-product";
+import { useWishlist } from "@/store/wishlist/useWishlist";
 
 export default function ProductDetail({ product }: any) {
-  console.log("product", product);
-
-  // Manage current image index for gallery
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Extract data safely from product object
+  const { addProduct, removeProduct, products } = useWishlist();
+console.log('products', products)
   const {
+    id,
     product_name,
     description,
     price,
@@ -23,7 +22,6 @@ export default function ProductDetail({ product }: any) {
     image_url,
   } = product;
 
-  // Calculate discount percentage
   const discount = original_Price
     ? Math.round(
         ((parseFloat(original_Price) - parseFloat(price)) /
@@ -32,26 +30,22 @@ export default function ProductDetail({ product }: any) {
       )
     : 0;
 
+  const isInWishlist = products.some((p) => p.id === id);
+
   return (
     <div className="min-h-screen my-20">
       <div className="productDetailOverlay py-10">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            {/* Product Images */}
             <div className="w-full">
-              <ProductImageGallery
-                images={image_url} // expects an array
-              />
+              <ProductImageGallery images={image_url} />
             </div>
 
-            {/* Product Info */}
             <div className="w-full space-y-6">
-              {/* Product Name */}
               <h1 className="text-3xl font-bold text-gray-900">
                 {product_name}
               </h1>
 
-              {/* Price & Discount */}
               <div className="flex items-center gap-4">
                 {discount > 0 && (
                   <div className="bg-primary text-black px-3 py-1 rounded-md font-bold text-sm">
@@ -69,15 +63,19 @@ export default function ProductDetail({ product }: any) {
 
               <div className="text-4xl font-bold text-gray-900">{price}</div>
 
-              {/* Rating - placeholder since your data doesn't have it */}
               <StarRating rating={4.5} reviewCount={12} />
 
-              {/* Wishlist Button */}
-              <button className="bg-primary hover:bg-primary text-black font-semibold px-6 py-2 rounded-xl transition-colors duration-200">
-                Add to Wishlist
+              <button
+                onClick={() =>
+                  isInWishlist
+                    ? removeProduct(id)
+                    : addProduct({ id, product_name, price, image_url })
+                }
+                className="bg-primary hover:bg-primary text-black font-semibold px-6 py-2 rounded-xl transition-colors duration-200"
+              >
+                {isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
               </button>
 
-              {/* Description */}
               <div className="space-y-4">
                 <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
                   Description
@@ -100,7 +98,6 @@ export default function ProductDetail({ product }: any) {
         </div>
       </div>
 
-      {/* Additional Sections */}
       <OffersSection />
       <Contactus />
       <Download />

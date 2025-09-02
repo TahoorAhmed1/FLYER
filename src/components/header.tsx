@@ -7,12 +7,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AppModal from "./app-modal";
 import { useEffect, useRef, useState } from "react";
+import { useWishlist } from "@/store/wishlist/useWishlist";
 
-function Header({user}:any) {
+function Header({ user }: any) {
   const pathname = usePathname();
   const [mobilePop, setMobilePop] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const {  products } = useWishlist();
 
   useEffect(() => setMobileOpen(false), [pathname]);
 
@@ -32,14 +34,13 @@ function Header({user}:any) {
       document.removeEventListener("keydown", onKey);
     };
   }, [mobileOpen]);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="bg-[#FFFEF3]">
-      <HeaderBar user={user} />
+      <HeaderBar user={user} setIsOpen={setIsOpen} products={products} isOpen={isOpen} />
 
-      {/* main header */}
       <div className="container relative  flex items-center justify-between py-4 lg:py-6 px-4">
-        {/* logo */}
         <div className="flex items-center">
           <Image
             src={Logo}
@@ -86,15 +87,25 @@ function Header({user}:any) {
             </Link>
           </ul>
 
-          <Link
-            href="/wishlist"
-            className="bg-primary hover:bg-primary/70 px-3 py-2.5 text-black font-semibold rounded-[10px] lg:text-[18px] text-[16px] whitespace-nowrap"
-          >
-            Join Wishlist
-          </Link>
+          {user?.id ? (
+            
+             <Link
+              href="/wishlist"
+              className="bg-primary hover:bg-primary/70 px-3 py-2.5 text-black font-semibold rounded-[10px] lg:text-[18px] text-[16px] whitespace-nowrap"
+            >
+              Join Wishlist
+            </Link>
+          ) : (
+            <button
+              onClick={() => setIsOpen(true)}
+              className="bg-primary hover:bg-primary/70 px-3 py-2.5 text-black font-semibold rounded-[10px] lg:text-[18px] text-[16px] whitespace-nowrap"
+            >
+              Join Wishlist
+            </button>
+           
+          )}
         </div>
 
-        {/* mobile controls */}
         <div className="lg:hidden flex items-center gap-3">
           <Link
             href="/wishlist"
@@ -149,7 +160,7 @@ function Header({user}:any) {
 
       {mobileOpen && (
         <div className="container px-4 lg:hidden relative z-30">
-          <div   className="rounded-xl border border-black/10 bg-white shadow-sm overflow-hidden">
+          <div className="rounded-xl border border-black/10 bg-white shadow-sm overflow-hidden">
             <ul className="flex flex-col divide-y divide-black/5 text-[16px]">
               <li>
                 <Link

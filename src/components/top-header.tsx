@@ -7,12 +7,12 @@ import Link from "next/link";
 import { logout } from "@/lib";
 import { useRouter } from "next/navigation";
 
-export default function HeaderBar({ user }: any) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function HeaderBar({ user, setIsOpen, isOpen, products }: any) {
   const [open, setOpen] = useState(false);
   const [language, setLanguage] = useState("ENGLISH");
   const ddRef = useRef<HTMLDivElement>(null);
-  const router=useRouter()
+  const router = useRouter();
+  console.log('products', products)
 
   const toggleDropdown = () => setOpen((p) => !p);
 
@@ -89,16 +89,17 @@ export default function HeaderBar({ user }: any) {
           <div className="flex lg:flex-row flex-col lg:items-center items-end gap-4 sm:gap-6">
             {user?.id ? (
               <>
-               <button
-                onClick={() => logout(router)}
-                className="flex cursor-pointer items-center gap-2 text-black font-medium hover:bg-primary px-2 sm:px-3 rounded transition-colors duration-200"
-              >
-              <LogOut className="text-white"/>
+                <button
+                  onClick={() => logout(router)}
+                  className="flex cursor-pointer items-center gap-2 text-black font-medium hover:bg-primary px-2 sm:px-3 rounded transition-colors duration-200"
+                >
+                  <LogOut className="text-white" />
 
-                <span className="text-xs sm:text-[15px] font-normal">
-                  Logout
-                </span>
-              </button></>
+                  <span className="text-xs sm:text-[15px] font-normal">
+                    Logout
+                  </span>
+                </button>
+              </>
             ) : (
               <button
                 onClick={() => setIsOpen(true)}
@@ -132,8 +133,14 @@ export default function HeaderBar({ user }: any) {
               href={"/wishlist"}
               className="flex items-center gap-2 text-black font-medium hover:bg-primary px-2 sm:px-3 rounded transition-colors duration-200"
             >
-                              <ShoppingCart className="text-white"/>
-
+              <div className="relative">
+                <ShoppingCart className="text-white" />
+                {products?.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                    {products?.length}
+                  </span>
+                )}
+              </div>
 
               <span className="text-xs sm:text-[15px] font-normal">
                 My Offers

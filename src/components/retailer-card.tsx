@@ -19,9 +19,9 @@ function RetailerCard({ retailer }: any) {
           />
         </div>
 
-        <div className="py-4 px-2">
-          <h2 className="text-[19px] text-primary font-semibold">
-            {retailer?.profile?.full_name}
+        <div className="py-4 px-2 ">
+          <h2 className="text-[19px] text-primary font-semibold h-[30px]">
+  {retailer?.profile?.full_name?.split(" ")[0]} {/* First Name */}
           </h2>
           <div className=" mb-4">
             <p className="text-base text-[#29292E] mb-1">

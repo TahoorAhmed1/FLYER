@@ -1,114 +1,29 @@
-import { retailerProduct } from "@/assets";
+"use client"
 import BannerSlider from "@/components/banner-slider";
 import Contactus from "@/components/contact";
 import Download from "@/components/download";
 import RetailerCard from "@/components/retailer-card";
-import Link from "next/link";
-import React from "react";
+import { API } from "@/services";
+import React, { useEffect, useState } from "react";
 
 function page() {
-  const retailers = [
-    {
-      name: "Panda",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-green-50",
-    },
-    {
-      name: "Lulu",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-red-50",
-    },
-    {
-      name: "Carrefour",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-blue-50",
-    },
-    {
-      name: "Danube",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-purple-50",
-    },
-    {
-      name: "NewWood",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "NewWood",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-orange-50",
-    },
-    {
-      name: "Farm",
-      logo: retailerProduct,
-      flyers: 2,
-      offers: 1487,
-      color: "bg-green-50",
-    },
-    {
-      name: "Extra",
-      logo: retailerProduct,
-      flyers: 3,
-      offers: 2156,
-      color: "bg-yellow-50",
-    },
-    {
-      name: "Tamimi",
-      logo: retailerProduct,
-      flyers: 1,
-      offers: 892,
-      color: "bg-indigo-50",
-    },
-  ];
 
-  return (
+const [retailers,setRetailer]=useState<any>([])
+
+  const fetchUserData = async () => {
+    try {
+      const data = await API.getRetailer();
+      const response = data.data.data;
+      console.log('response', response)
+      setRetailer(response);
+    } catch (error) {
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+    return (
     <div>
       <BannerSlider />
       <div className="container mt-20 mb-10">
@@ -116,8 +31,8 @@ function page() {
           Top Retailers in Jeddah
         </h2>
         <div className="grid grid-cols-5 gap-10  mt-8">
-          {retailers.map((retailer, index) => (
-            <RetailerCard retailer={retailer} />
+          {retailers.map((retailer:any, index:any) => (
+            <RetailerCard retailer={retailer} key={index}/>
           ))}
         </div>
         <div className="flex justify-center">

@@ -38,6 +38,7 @@ interface CustomAxiosInstance {
   profileUpdate: (data: Record<string, any>) => Promise<any>;
   updateProfile: (data: Record<string, any>) => Promise<any>;
   forgotPassword: (data: Record<string, any>) => Promise<any>;
+  contactUs: (data: Record<string, any>) => Promise<any>;
   resendOtp: () => Promise<any>;
   logout: () => Promise<any>;
   getProfile: () => Promise<any>;
@@ -71,6 +72,12 @@ axiosInstance.registerUser = (data: Record<string, any>) => {
 axiosInstance.updateProfile = (data: Record<string, any>) => {
   return axiosInstance.patch("/auth/profile/update", data);
 };
+axiosInstance.contactUs = (data: Record<string, any>) => {
+  return axiosInstance.post("/client/contact", data);
+};
+
+
+
 
 axiosInstance.otpVerification = (data: Record<string, any>) => {
   const emailToken = localStorage.getItem("email_token");

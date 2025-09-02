@@ -5,71 +5,12 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { retailerProduct } from "@/assets";
-import Image from "next/image";
 import RetailerCard from "./retailer-card";
 import { useEffect, useState } from "react";
 import { API } from "@/services";
 
 export default function RetailersSection() {
-  // const retailers = [
-  //   {
-  //     name: "Panda",
-  //     logo: retailerProduct,
-  //     flyers: 2,
-  //     offers: 1487,
-  //     color: "bg-green-50",
-  //   },
-  //   {
-  //     name: "Lulu",
-  //     logo: retailerProduct,
-  //     flyers: 2,
-  //     offers: 1487,
-  //     color: "bg-red-50",
-  //   },
-  //   {
-  //     name: "Carrefour",
-  //     logo: retailerProduct,
-  //     flyers: 2,
-  //     offers: 1487,
-  //     color: "bg-blue-50",
-  //   },
-  //   {
-  //     name: "Danube",
-  //     logo: retailerProduct,
-  //     flyers: 2,
-  //     offers: 1487,
-  //     color: "bg-purple-50",
-  //   },
-  //   {
-  //     name: "NewWood",
-  //     logo: retailerProduct,
-  //     flyers: 2,
-  //     offers: 1487,
-  //     color: "bg-orange-50",
-  //   },
-  //   {
-  //     name: "Farm",
-  //     logo: retailerProduct,
-  //     flyers: 2,
-  //     offers: 1487,
-  //     color: "bg-green-50",
-  //   },
-  //   {
-  //     name: "Extra",
-  //     logo: retailerProduct,
-  //     flyers: 3,
-  //     offers: 2156,
-  //     color: "bg-yellow-50",
-  //   },
-  //   {
-  //     name: "Tamimi",
-  //     logo: retailerProduct,
-  //     flyers: 1,
-  //     offers: 892,
-  //     color: "bg-indigo-50",
-  //   },
-  // ];
+  
 const [retailers,setRetailer]=useState<any>([])
 
   const fetchUserData = async () => {
