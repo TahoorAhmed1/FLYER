@@ -8,10 +8,12 @@ import { usePathname } from "next/navigation";
 import AppModal from "./app-modal";
 import { useEffect, useRef, useState } from "react";
 import { useWishlist } from "@/store/wishlist/useWishlist";
+import CountryAndLanguageModal from "./country&language-modal";
 
 function Header({ user }: any) {
   const pathname = usePathname();
   const [mobilePop, setMobilePop] = useState(false);
+  const [isCountry, setCountry] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const {  products } = useWishlist();
@@ -214,6 +216,7 @@ function Header({ user }: any) {
         </div>
       )}
 
+      
       {mobilePop && <AppModal setMobilePop={setMobilePop} />}
       {pathname !== "/" && <NavigationButtons />}
     </div>

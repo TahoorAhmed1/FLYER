@@ -2,6 +2,7 @@
 
 import { Search, Trash2 } from "lucide-react";
 import { useWishlist } from "@/store/wishlist/useWishlist";
+import Link from "next/link";
 
 export default function WishlistPage() {
   const { products, removeProduct } = useWishlist();
@@ -39,7 +40,8 @@ export default function WishlistPage() {
           {/* Table Rows */}
           {products.length > 0 ? (
             products.map((item:any) => (
-              <div
+              <Link
+               href={`/product/${item?.id}`}
                 key={item.id}
                 className="grid grid-cols-[80px_2fr_1fr_1fr_1fr] items-center py-4 px-4 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition-colors"
               >
@@ -84,7 +86,7 @@ export default function WishlistPage() {
                   </button>
                   
                 </div>
-              </div>
+              </Link>
             ))
           ) : (
             <div className="text-center py-10 text-gray-500 font-medium">

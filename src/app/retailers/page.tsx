@@ -3,26 +3,11 @@ import BannerSlider from "@/components/banner-slider";
 import Contactus from "@/components/contact";
 import Download from "@/components/download";
 import RetailerCard from "@/components/retailer-card";
-import { API } from "@/services";
-import React, { useEffect, useState } from "react";
+import { useRetailer } from "@/store/retailer/retailer";
 
 function page() {
 
-const [retailers,setRetailer]=useState<any>([])
-
-  const fetchUserData = async () => {
-    try {
-      const data = await API.getRetailer();
-      const response = data.data.data;
-      console.log('response', response)
-      setRetailer(response);
-    } catch (error) {
-    }
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+const {retailer}=useRetailer()
     return (
     <div>
       <BannerSlider />
@@ -31,7 +16,7 @@ const [retailers,setRetailer]=useState<any>([])
           Top Retailers in Jeddah
         </h2>
         <div className="grid grid-cols-5 gap-10  mt-8">
-          {retailers.map((retailer:any, index:any) => (
+          {retailer?.map((retailer:any, index:any) => (
             <RetailerCard retailer={retailer} key={index}/>
           ))}
         </div>

@@ -2,32 +2,15 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { offerProduct } from "@/assets";
+
 
 import OfferCard from "./offer-card";
-import { useEffect, useState } from "react";
-import { API } from "@/services";
+import { useProduct } from "@/store/products/product";
 
 export default function OffersSection() {
  
-  const [offers,setOffers]=useState<any>([])
-
-  console.log('retailers', offers)
-  const fetchUserData = async () => {
-    try {
-      const data = await API.getProduct();
-      const response = data.data.data;
-      setOffers(response);
-    } catch (error) {
-    }
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+   const { product } = useProduct();
+ 
 
   return (
     <div className="relative bg-white my-14  overflow-hidden">
@@ -75,7 +58,7 @@ export default function OffersSection() {
             }}
             className="pb-12"
           >
-            {offers.map((offer:any, index:any) => (
+            {product.map((offer:any, index:any) => (
               <SwiperSlide key={index}>
                 <OfferCard index={index} offer={offer} />
               </SwiperSlide>

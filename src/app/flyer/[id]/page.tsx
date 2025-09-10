@@ -26,7 +26,7 @@ async function getProduct(id: string) {
   }
 }
 
-async function page({ params }: { params: { id: string } }) {
+async function page({ params }:any) {
     let pa = await params;
     const product = await getProduct(pa.id);
   return <FlyerDetail product={product} />;

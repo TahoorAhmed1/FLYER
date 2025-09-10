@@ -7,9 +7,11 @@ import { useUser } from "@/store/user/useState";
 import { useRouter } from "next/navigation";
 import { API } from "@/services";
 import { logout } from "@/lib";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import Cookies from "js-cookie";
 import { ToastContainer } from "react-toastify";
+import { useRetailer } from "@/store/retailer/retailer";
+import { useProduct } from "@/store/products/product";
 
 const jost = Jost({
   variable: "--font-geist-sans",
@@ -22,7 +24,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { setUser,user } = useUser();
-  const router = useRouter();
+  const {setRetailer}=useRetailer()
+  const {setProduct}=useProduct()
+
+
+
+    const fetchProductData = async () => {
+    try {
+      const data = await API.getProduct();
+      const response = data.data.data;
+      setProduct(response);
+    } catch (error) {
+    }
+  };
+
+  const fetchRetailerData = async () => {
+    try {
+      const data = await API.getRetailer();
+      const response = data.data.data;
+      setRetailer(response);
+    } catch (error) {
+    }
+  };
+
+  useLayoutEffect(()=>{
+       fetchRetailerData()
+    fetchProductData()
+  },[])
+
+  useEffect(() => {
+    fetchUserData();
+ 
+  }, []);
 
   const fetchUserData = async () => {
     const token = Cookies.get("token");
@@ -32,7 +65,7 @@ export default function RootLayout({
       const response = data.data.data;
       setUser(response);
     } catch (error) {
-      logout(router);
+      console.log('error', error)
     }
   };
 
@@ -44,7 +77,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jost.className}  antialiased`}>
         <Header  user={user}/>
-        <ToastContainer key="toast-container" />
+        <ToastContainer />
 
         {children}
         <Footer />

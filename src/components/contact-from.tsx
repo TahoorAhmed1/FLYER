@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { API } from "@/services";
 import { notify } from "@/lib";
+import { useState } from "react";
 
 const contactSchema = z.object({
   fullName: z.string().min(3, "Full Name must be at least 3 characters"),
@@ -28,9 +29,11 @@ export default function ContactForm() {
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
   });
+  const [loader,setLoader]=useState(false)
 
   const onSubmit = async (values: ContactFormValues) => {
     try {
+      setLoader(true)
       const {fullName,...data}=values
       await API.contactUs({name:fullName,...data});
 
@@ -39,11 +42,14 @@ export default function ContactForm() {
       reset();
     } catch (error: any) {
       notify("error", error?.response?.data?.message || "Something went wrong");
+    }finally{
+            setLoader(false)
+
     }
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full py-2">
       <div className="bg-white p-8 rounded-3xl shadow-lg w-full">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
@@ -108,10 +114,10 @@ export default function ContactForm() {
           {/* Submit */}
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || loader}
             className="w-full bg-primary hover:bg-primary text-black font-semibold py-4 rounded-xl transition-colors duration-200 text-lg disabled:opacity-50"
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
+            {loader ? "Sending..." : "Send Message"}
           </button>
         </form>
       </div>

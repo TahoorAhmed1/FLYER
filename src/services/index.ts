@@ -133,6 +133,7 @@ axiosInstance.logout = () => {
 };
 
 
+
 axiosInstance.getRetailer = () => {
   const token = Cookies.get("token");
   return axiosInstance.get("/client/retailer", {

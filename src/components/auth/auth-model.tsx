@@ -59,7 +59,7 @@ export default function AuthModel({ isOpen, setIsOpen }: any) {
         email: values.email,
         password: values.password,
         full_name: values.fullName,
-        phoneNumber: values.phone,
+        phone_number: values.phone,
       });
       notify("success", "Email sent successfully!");
       localStorage.setItem("email_token", res?.data?.data?.token);
@@ -93,7 +93,7 @@ export default function AuthModel({ isOpen, setIsOpen }: any) {
       {isOpen && (
         <div className="fixed transition-all backdrop-blur-xs inset-0 z-50 flex items-center overflow-hidden justify-center bg-black/10 p-4">
           {showOtp ? (
-            <OtpVerification />
+            <OtpVerification setShowOtp={setShowOtp} setIsLogin={setIsLogin}/>
           ) : isLogin ? (
             /* Signup Form */
             <div className="relative w-full max-w-lg rounded-xl bg-white shadow-lg p-8">

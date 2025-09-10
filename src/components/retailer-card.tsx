@@ -25,11 +25,11 @@ function RetailerCard({ retailer }: any) {
           </h2>
           <div className=" mb-4">
             <p className="text-base text-[#29292E] mb-1">
-              <span className="font-semibold">
-                {retailer?.flyer?.length} flyers
+              <span className="font-semibold mr-1">
+                {retailer?.flyer_count ?? 0 } flyers
               </span>{" "}
               <span className="font-semibold">
-                {retailer.offers?.length ?? 0} offers
+                {retailer.product_count ?? 0} offers
               </span>
             </p>
           </div>

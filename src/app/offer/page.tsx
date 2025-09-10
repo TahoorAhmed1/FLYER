@@ -1,60 +1,12 @@
-import { offerProduct } from "@/assets";
+"use client";
 import BannerSlider from "@/components/banner-slider";
 import Contactus from "@/components/contact";
 import Download from "@/components/download";
 import OfferCard from "@/components/offer-card";
+import { useProduct } from "@/store/products/product";
 
 function page() {
-  const offers = [
-    {
-      name: "iPhone 14 pro",
-      image: offerProduct,
-      discount: 18,
-      category: "Electronics",
-    },
-    {
-      name: "Cosmetics",
-      image: offerProduct,
-      discount: 18,
-      category: "Beauty",
-    },
-    {
-      name: "Tomato",
-      image: offerProduct,
-      discount: 18,
-      category: "Fresh Produce",
-    },
-    {
-      name: "Air Pods",
-      image: offerProduct,
-      discount: 18,
-      category: "Electronics",
-    },
-    {
-      name: "Green Apples",
-      image: offerProduct,
-      discount: 18,
-      category: "Fresh Produce",
-    },
-    {
-      name: "T-shirt",
-      image: offerProduct,
-      discount: 18,
-      category: "Fashion",
-    },
-    {
-      name: "Laptop",
-      image: offerProduct,
-      discount: 25,
-      category: "Electronics",
-    },
-    {
-      name: "Milk",
-      image: offerProduct,
-      discount: 15,
-      category: "Dairy",
-    },
-  ];
+  const { product } = useProduct();
 
   return (
     <div>
@@ -62,7 +14,7 @@ function page() {
       <div className="container mt-20 mb-10">
         <h2 className="text-6xl font-bold text-center">Offers in Jeddah </h2>
         <div className="grid grid-cols-5 gap-10  mt-8">
-          {offers.map((offer, index) => (
+          {product?.map((offer: any, index: any) => (
             <div key={index}>
               <OfferCard index={index} offer={offer} />
             </div>

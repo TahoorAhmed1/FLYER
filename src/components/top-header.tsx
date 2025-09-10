@@ -6,13 +6,14 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { logout } from "@/lib";
 import { useRouter } from "next/navigation";
+import CountryAndLanguageModal from "./country&language-modal";
 
 export default function HeaderBar({ user, setIsOpen, isOpen, products }: any) {
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [language, setLanguage] = useState("ENGLISH");
   const ddRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  console.log('products', products)
 
   const toggleDropdown = () => setOpen((p) => !p);
 
@@ -42,7 +43,7 @@ export default function HeaderBar({ user, setIsOpen, isOpen, products }: any) {
       <div className="bg-primary">
         <div className="container px-4 py-2 flex flex-row items-center justify-between gap-2">
           {/* Left group */}
-          <div className="flex lg:flex-row flex-col flex-wrap lg:items-center gap-2 sm:gap-4">
+          <div onClick={()=>setOpen2(true)} className="flex lg:flex-row flex-col flex-wrap lg:items-center gap-2 sm:gap-4">
             <button
               className="flex items-center gap-2 text-black font-medium hover:bg-primary px-2 sm:px-3 py-1 rounded transition-colors duration-200"
               aria-label="Selected location"
@@ -51,37 +52,15 @@ export default function HeaderBar({ user, setIsOpen, isOpen, products }: any) {
             </button>
 
             <div className="relative inline-block text-left" ref={ddRef}>
-              <button
-                onClick={toggleDropdown}
-                className="flex items-center gap-2 cursor-pointer text-black font-medium hover:bg-primary px-2 sm:px-3 py-1 rounded transition-colors duration-200"
-                aria-haspopup="menu"
-                aria-expanded={open}
-              >
-                <span className="text-xs sm:text-sm">{language}</span>
-                <ChevronDown className="w-4 h-4" aria-hidden="true" />
-              </button>
-
-              {open && (
-                <div
-                  className="absolute right-0 z-20 mt-2 w-32 bg-white shadow-md border rounded overflow-hidden"
-                  role="menu"
-                >
+         
                   <button
                     onClick={() => handleSelect("ENGLISH")}
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                    className="block w-full text-base font-medium text-left px-4 py-2 "
                     role="menuitem"
                   >
                     English
                   </button>
-                  <button
-                    onClick={() => handleSelect("ARABIC")}
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                    role="menuitem"
-                  >
-                    Arabic
-                  </button>
-                </div>
-              )}
+             
             </div>
           </div>
 
@@ -150,6 +129,7 @@ export default function HeaderBar({ user, setIsOpen, isOpen, products }: any) {
         </div>
       </div>
 
+{open2 && <CountryAndLanguageModal setOpen2={setOpen2}/>}
       <Signup isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );

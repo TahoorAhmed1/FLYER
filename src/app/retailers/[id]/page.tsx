@@ -28,11 +28,11 @@ async function getRetailerFlyer(id: string) {
 
 }
 
-async function page({ params }: { params: { id: string }}) {
+async function page({ params }:any) {
  
    let pa=await params
-  const retailers = await getRetailerFlyer(pa.id);
-  console.log('retailers', retailers)
+  const {flyer,store} = await getRetailerFlyer(pa.id);
+  console.log('store', store)
   return (
     <div>
       <BannerSlider />
@@ -57,14 +57,14 @@ async function page({ params }: { params: { id: string }}) {
       <div className="my-10">
         <h2 className="text-6xl text-center font-bold mb-5 ">Flyers </h2>
         <div className="grid grid-cols-5 container gap-10  ">
-          {retailers?.map((flyer:any, index:any) => (
+          {flyer?.map((flyer:any, index:any) => (
             <FlyerCard flyer={flyer} key={index} />
           ))}
         </div>
       </div>
       <OffersSection />
       <div className="container">
-        <Google />
+        <Google stores={store} />
       </div>
       <Contactus />
 

@@ -7,7 +7,7 @@ import { notify } from "@/lib";
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
 
-export default function OtpVerification() {
+export default function OtpVerification({setIsLogin,setShowOtp}:any) {
   const [otp, setOtp] = useState("");
   const [open, setOpen] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -22,7 +22,6 @@ export default function OtpVerification() {
       if (token) {
         Cookies.set("token", token, { expires: 7 });
         notify("success", "Email verified");
-        router.push("/dashboard");
       } else {
         notify("error", "Token missing in response");
       }
@@ -31,7 +30,6 @@ export default function OtpVerification() {
     } finally {
       setTimeout(() => {
         setLoading(false);
-        setOpen(false);
       }, 2000);
     }
   };
@@ -73,64 +71,66 @@ export default function OtpVerification() {
     setOtp("");
   };
 
-  if (!open) return null;
 
   return (
-    <div className="otp-dialog-overlay">
-      <div className="otp-dialog">
-        <div className="otp-card">
-          <div className="otp-card-header">
-            <h2 className="otp-title">Verify Account</h2>
-            <p className="otp-subtitle">Enter verification code</p>
-          </div>
-          <div className="otp-card-content">
-            <form onSubmit={handleSubmit}>
-              <div className="otp-input-group">
-                {Array.from({ length: 6 }, (_, index) => (
-                  <input
-                    key={index}
-                    id={`otp-${index}`}
-                    type="text"
-                    value={otp[index] || ""}
-                    onChange={(e) => handleOtpChange(index, e.target.value)}
-                    onKeyDown={(e) => handleKeyDown(index, e)}
-                    className="otp-input"
-                    maxLength={1}
-                  />
-                ))}
-              </div>
-
-              <div className="otp-resend">
-                <span>Didn't receive code? </span>
-                <button
-                  type="button"
-                  onClick={resendOtp}
-                  disabled={loading}
-                  className="otp-resend-btn"
-                >
-                  Resend...
-                </button>
-              </div>
-
-              <div className="otp-actions">
-                <button
-                  type="submit"
-                  className="otp-btn otp-btn-primary"
-                  disabled={loading}
-                >
-                  {loading ? <Loader className="w-4 h-4 animate-spin" /> : "Verify Code"}
-                </button>
-                <button
-                  type="button"
-                  className="otp-btn otp-btn-secondary"
-                  onClick={handleCancel}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-gray-800">Verify Account</h2>
+          <p className="text-sm text-gray-500 mt-1">
+            Enter the 6-digit verification code
+          </p>
         </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="mt-6 space-y-6">
+          {/* OTP Inputs */}
+          <div className="flex justify-center gap-2">
+            {Array.from({ length: 6 }, (_, index) => (
+              <input
+                key={index}
+                id={`otp-${index}`}
+                type="text"
+                value={otp[index] || ""}
+                onChange={(e) => handleOtpChange(index, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(index, e)}
+                className="w-12 h-12 text-center text-lg font-semibold border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                maxLength={1}
+              />
+            ))}
+          </div>
+
+          {/* Resend */}
+          <div className="text-center text-sm text-gray-600">
+            Didn’t receive code?{" "}
+            <button
+              type="button"
+              onClick={resendOtp}
+              disabled={loading}
+              className="text-primary hover:underline disabled:opacity-50"
+            >
+              Resend
+            </button>
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-3 justify-center">
+            <button
+              type="submit"
+              className="flex items-center justify-center px-4 py-2 bg-primary text-black font-medium rounded-lg disabled:opacity-50 transition"
+              disabled={loading}
+            >
+              {loading ? <Loader className="w-4 h-4 animate-spin" /> : "Verify Code"}
+            </button>
+            <button
+              type="button"
+              className="px-4 py-2 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

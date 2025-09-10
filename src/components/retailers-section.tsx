@@ -2,30 +2,13 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+  
 import RetailerCard from "./retailer-card";
-import { useEffect, useState } from "react";
-import { API } from "@/services";
+
+import { useRetailer } from "@/store/retailer/retailer";
 
 export default function RetailersSection() {
-  
-const [retailers,setRetailer]=useState<any>([])
-
-  const fetchUserData = async () => {
-    try {
-      const data = await API.getRetailer();
-      const response = data.data.data;
-      console.log('response', response)
-      setRetailer(response);
-    } catch (error) {
-    }
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+const {retailer}=useRetailer()
 
   return (
     <div className=" py-12 px-4">
@@ -75,7 +58,7 @@ const [retailers,setRetailer]=useState<any>([])
             }}
             className="pb-12"
           >
-            {retailers.map((retailer:any, index:any) => (
+            {retailer?.map((retailer:any, index:any) => (
               <SwiperSlide key={index}>
                 <RetailerCard retailer={retailer} />
               </SwiperSlide>

@@ -25,7 +25,7 @@ async function getProduct(id: string) {
     return null;
   }
 }
-async function Page({ params }: { params: { id: string } }) {
+async function Page({ params }: any) {
  let pa=await params
   const product = await getProduct(pa.id);
 

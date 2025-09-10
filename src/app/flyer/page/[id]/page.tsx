@@ -4,10 +4,9 @@ import Download from "@/components/download";
 import OfferCard from "@/components/offer-card";
 import { cookies } from "next/headers";
 
-
 async function getProduct(id: string) {
   try {
-    const cookieStore = await cookies(); 
+    const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
 
     const res = await fetch(
@@ -16,7 +15,7 @@ async function getProduct(id: string) {
         headers: {
           authorization: token || "",
         },
-        cache: "no-store", 
+        cache: "no-store",
       }
     );
     const data = await res.json();
@@ -26,18 +25,19 @@ async function getProduct(id: string) {
     return null;
   }
 }
-async function page({ params }: { params: { id: string } }) {
-
-   let pa = await params;
-    const offers = await getProduct(pa.id);
+async function page({ params }:any) {
+  const pa = await params;
+  const offers = await getProduct(pa.id);
 
   return (
     <div>
       <BannerSlider />
       <div className="container mt-20 mb-10">
-        <h2 className="text-6xl font-bold text-center">Page {offers.page_no} Products </h2>
+        <h2 className="text-6xl font-bold text-center">
+          Page {offers.page_no} Products{" "}
+        </h2>
         <div className="grid grid-cols-5 gap-10  mt-8">
-          {offers?.product.map((offer:any, index:any) => (
+          {offers?.product.map((offer: any, index: any) => (
             <div key={index}>
               <OfferCard index={index} offer={offer} />
             </div>

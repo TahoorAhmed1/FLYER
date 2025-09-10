@@ -33,9 +33,7 @@ function OfferCard({ offer }: any) {
         )}
       </div>
 
-      {/* Info Section */}
       <div className="px-3 py-2 bg-[#FDFDFD]">
-        {/* Original + Current Price */}
         <div className="flex items-center gap-2 text-sm">
           {originalPrice > 0 && (
             <span className="line-through text-gray-500">${originalPrice.toFixed(2)}</span>
@@ -48,8 +46,8 @@ function OfferCard({ offer }: any) {
         </p>
 
       <p className="text-sm text-black font-medium mt-1 h-16">
-  {offer.product_name.split(" ").slice(0, 8).join(" ")}
-  {offer.product_name.split(" ").length > 8 && "..."}
+  {offer?.product_name?.split(" ").slice(0, 8).join(" ")}
+  {offer?.product_name?.split(" ").length > 8 && "..."}
 </p>
       </div>
     </div>
