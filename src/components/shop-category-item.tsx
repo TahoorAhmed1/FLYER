@@ -23,7 +23,7 @@ export function CategoryItem({ name, image }: CategoryItemProps) {
         />
       </div>
 
-      <span className="text-lg font-semibold text-black text-center leading-tight group-hover:text-gray-900 transition-colors duration-200">
+      <span className="text-base font-semibold text-black text-center leading-tight group-hover:text-gray-900 transition-colors duration-200">
         {name}
       </span>
     </Link>

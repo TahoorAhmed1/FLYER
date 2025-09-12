@@ -5,41 +5,23 @@ import { Search, ArrowLeft, Plus, Minus, Grid3X3, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-
 import Link from "next/link";
-
-const categories = [
-  "Electronics",
-  "Grocery",
-  "Fruits & Vegetables",
-  "Dairy",
-  "Meat & Fish",
-  "Frozen Foods",
-  "Confectionery, Snacks",
-  "Health & Beauty",
-  "Beverages",
-  "Bakery",
-  "Laundry & Cleaning",
-  "Paper & Disposables",
-  "Baby & Mom",
-  "Home, Furniture, Pets",
-];
+import { useProduct } from "@/store/products/product";
 
 
 
 export default function FlyerDetail({ product    }: any) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [currentPage, setCurrentPage] = useState(1); // track current page
 
-  const filteredCategories = categories.filter((category) =>
-    category.toLowerCase().includes(searchTerm.toLowerCase())
+  const { category } = useProduct();
+  const filteredCategories = category?.filter((category:any) =>
+    category?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log('product', product)
 
   return (
     <div className="flex min-h-screen container my-10">
-      {/* Sidebar */}
       <aside className="w-64 bg-white border-gray-200 flex-shrink-0">
         <div className="p-4 border-gray-100">
           <h2 className="font-semibold text-sm text-gray-800 mb-4 tracking-wide">
@@ -64,13 +46,13 @@ export default function FlyerDetail({ product    }: any) {
         </div>
 
         <nav className="overflow-y-auto">
-          {filteredCategories.map((category, index) => (
+          {filteredCategories.map(({name}:any, index:any) => (
             <button
               key={index}
               className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center"
             >
               <span className="mr-2 text-gray-400">›</span>
-              {category}
+              {name}
             </button>
           ))}
         </nav>
@@ -86,12 +68,11 @@ export default function FlyerDetail({ product    }: any) {
             </button>
             <span className="text-sm text-gray-600">Back</span>
             <span className="text-sm text-gray-400">
-              {product?.length > 0 ? `1/${product.length}` : "0/0"}
+              {product?.length > 0
+                ? `${currentPage}/${product.length}`
+                : "0/0"}
             </span>
-            <div className="ml-4">
-              <h1 className="text-lg font-bold text-gray-900">PANDA OFF...</h1>
-              <p className="text-xs text-gray-500">VALID TILL JUL 29, 2025</p>
-            </div>
+         
           </div>
 
           <div className="flex items-center gap-2">
@@ -118,6 +99,9 @@ export default function FlyerDetail({ product    }: any) {
               pagination={{ clickable: true }}
               spaceBetween={10}
               slidesPerView={1}
+                   onSlideChange={(swiper) =>
+                setCurrentPage(swiper.activeIndex + 1) // update current page
+              }
               className="w-full h-full"
             >
               {product?.map((page: any) => (
@@ -137,18 +121,7 @@ export default function FlyerDetail({ product    }: any) {
             </Swiper>
           </div>
         </main>
-        {/* Selected Product Popup */}
-        {selectedProduct && (
-          <div className="fixed bottom-5 right-5 bg-white p-4 rounded-lg shadow-lg border">
-            <h3 className="font-semibold">{selectedProduct.name}</h3>
-            <button
-              className="mt-2 px-3 py-1 bg-red-500 text-white rounded"
-              onClick={() => setSelectedProduct(null)}
-            >
-              Close
-            </button>
-          </div>
-        )}
+
       </div>
     </div>
   );

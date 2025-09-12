@@ -9,6 +9,7 @@ import AppModal from "./app-modal";
 import { useEffect, useRef, useState } from "react";
 import { useWishlist } from "@/store/wishlist/useWishlist";
 import CountryAndLanguageModal from "./country&language-modal";
+import { useLocation } from "@/store/location/location";
 
 function Header({ user }: any) {
   const pathname = usePathname();

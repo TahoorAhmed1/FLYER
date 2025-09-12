@@ -7,20 +7,19 @@ import Link from "next/link";
 import { logout } from "@/lib";
 import { useRouter } from "next/navigation";
 import CountryAndLanguageModal from "./country&language-modal";
+import { useLocation } from "@/store/location/location";
 
 export default function HeaderBar({ user, setIsOpen, isOpen, products }: any) {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
-  const [language, setLanguage] = useState("ENGLISH");
+    const {  country,city,language} = useLocation();
+
   const ddRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const toggleDropdown = () => setOpen((p) => !p);
 
-  const handleSelect = (lang: string) => {
-    setLanguage(lang);
-    setOpen(false);
-  };
+
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -48,17 +47,16 @@ export default function HeaderBar({ user, setIsOpen, isOpen, products }: any) {
               className="flex items-center gap-2 text-black font-medium hover:bg-primary px-2 sm:px-3 py-1 rounded transition-colors duration-200"
               aria-label="Selected location"
             >
-              <span className="text-xs sm:text-sm">SAUDI ARABIA - JEDDAH</span>
+              <span className="text-xs sm:text-base">{country} - {city}</span>
             </button>
 
             <div className="relative inline-block text-left" ref={ddRef}>
          
                   <button
-                    onClick={() => handleSelect("ENGLISH")}
                     className="block w-full text-base font-medium text-left px-4 py-2 "
                     role="menuitem"
                   >
-                    English
+                    {language}
                   </button>
              
             </div>

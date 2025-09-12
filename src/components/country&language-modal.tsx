@@ -1,30 +1,59 @@
 "use client";
 
+import React from "react";
 import { X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "@/store/location/location";
 
 const schema = z.object({
-  country: z.string().min(1, "Country is required"),
+  country: z.string().min(1).refine(val => val === "Pakistan", {
+    message: "Country must be Pakistan",
+  }),
   city: z.string().min(1, "City is required"),
-  language: z.string().min(1, "Language is required"),
+  language: z.string().min(1).refine(val => val === "English", {
+    message: "Language must be English",
+  }),
 });
 
 type FormValues = z.infer<typeof schema>;
 
-export default function CountryAndLanguageModal({ setOpen2}: any) {
+const pakistaniStates = [
+  "All",
+  "Punjab",
+  "Sindh",
+  "Khyber Pakhtunkhwa",
+  "Balochistan",
+  "Gilgit-Baltistan",
+  "Islamabad Capital Territory",
+  "Azad Jammu and Kashmir",
+];
+
+export default function CountryAndLanguageModal({ setOpen2 }: any) {
+  const { country, city, language, setLocation } = useLocation();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      country,
+      city,
+      language,
+    },
   });
 
+
   const onSubmit = async (data: FormValues) => {
-    console.log("Form submitted:", data);
-    setOpen2(false); // close modal after submit
+
+
+    setLocation(data);
+
+    setOpen2(false);
   };
 
   return (
@@ -44,21 +73,28 @@ export default function CountryAndLanguageModal({ setOpen2}: any) {
           <div>
             <input
               {...register("country")}
-              placeholder="Country"
-              className="w-full border border-slate-300 rounded-md px-3 py-2"
+              value="Pakistan"
+              readOnly
+              className="w-full border border-slate-300 rounded-md px-3 py-2 bg-gray-100 cursor-not-allowed"
             />
             {errors.country && (
               <p className="text-red-500 text-sm">{errors.country.message}</p>
             )}
           </div>
 
-          {/* City */}
+          {/* City / State */}
           <div>
-            <input
+            <select
               {...register("city")}
-              placeholder="City"
               className="w-full border border-slate-300 rounded-md px-3 py-2"
-            />
+            >
+              <option value="">Select State</option>
+              {pakistaniStates.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
             {errors.city && (
               <p className="text-red-500 text-sm">{errors.city.message}</p>
             )}
@@ -68,8 +104,9 @@ export default function CountryAndLanguageModal({ setOpen2}: any) {
           <div>
             <input
               {...register("language")}
-              placeholder="Language"
-              className="w-full border border-slate-300 rounded-md px-3 py-2"
+              value="English"
+              readOnly
+              className="w-full border border-slate-300 rounded-md px-3 py-2 bg-gray-100 cursor-not-allowed"
             />
             {errors.language && (
               <p className="text-red-500 text-sm">{errors.language.message}</p>
@@ -80,7 +117,7 @@ export default function CountryAndLanguageModal({ setOpen2}: any) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-primary text-white py-2 rounded-md hover:bg-primary/90"
+            className="w-full bg-primary text-black py-2 rounded-md hover:bg-primary/90"
           >
             {isSubmitting ? "Submitting..." : "Submit"}
           </button>

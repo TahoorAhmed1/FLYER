@@ -46,6 +46,7 @@ interface CustomAxiosInstance {
   getAllLifeArea: () => Promise<any>;
   getRetailer: () => Promise<any>;
   getProduct: () => Promise<any>;
+  getCategory: () => Promise<any>;
 }
 
 const axiosInstance = axios.create({
@@ -133,6 +134,10 @@ axiosInstance.logout = () => {
 };
 
 
+
+axiosInstance.getCategory = () => {
+  return axiosInstance.get("/client/category");
+};
 
 axiosInstance.getRetailer = () => {
   const token = Cookies.get("token");

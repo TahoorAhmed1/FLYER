@@ -23,19 +23,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { setUser,user } = useUser();
-  const {setRetailer}=useRetailer()
-  const {setProduct}=useProduct()
+  const { setUser, user } = useUser();
+  const { setRetailer } = useRetailer();
+  const { setProduct, setCategory } = useProduct();
 
-
-
-    const fetchProductData = async () => {
+  const fetchCategoryData = async () => {
+    try {
+      const data = await API.getCategory();
+      const response = data.data.data;
+      setCategory(response);
+    } catch (error) {}
+  };
+  const fetchProductData = async () => {
     try {
       const data = await API.getProduct();
       const response = data.data.data;
       setProduct(response);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const fetchRetailerData = async () => {
@@ -43,18 +47,17 @@ export default function RootLayout({
       const data = await API.getRetailer();
       const response = data.data.data;
       setRetailer(response);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
-  useLayoutEffect(()=>{
-       fetchRetailerData()
-    fetchProductData()
-  },[])
+  useLayoutEffect(() => {
+    fetchCategoryData();
+    fetchRetailerData();
+    fetchProductData();
+  }, []);
 
   useEffect(() => {
     fetchUserData();
- 
   }, []);
 
   const fetchUserData = async () => {
@@ -65,7 +68,7 @@ export default function RootLayout({
       const response = data.data.data;
       setUser(response);
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
     }
   };
 
@@ -76,7 +79,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jost.className}  antialiased`}>
-        <Header  user={user}/>
+        <Header user={user} />
         <ToastContainer />
 
         {children}

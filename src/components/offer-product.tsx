@@ -6,10 +6,12 @@ import { Navigation, Pagination } from "swiper/modules";
 
 import OfferCard from "./offer-card";
 import { useProduct } from "@/store/products/product";
+import { useLocation } from "@/store/location/location";
 
 export default function OffersSection() {
  
    const { product } = useProduct();
+   const {  city, } = useLocation();
  
 
   return (
@@ -17,7 +19,7 @@ export default function OffersSection() {
       <div className="relative container">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">Offers in Jeddah</h2>
+          <h2 className="text-3xl font-bold text-gray-900">{ city === "All" ?`All Offers `: `Offers in ${city}`}</h2>
           <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
             Show All
           </button>

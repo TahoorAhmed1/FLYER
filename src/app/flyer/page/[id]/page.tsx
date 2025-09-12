@@ -25,7 +25,7 @@ async function getProduct(id: string) {
     return null;
   }
 }
-async function page({ params }:any) {
+async function page({ params }:any  ) {
   const pa = await params;
   const offers = await getProduct(pa.id);
 
@@ -36,18 +36,18 @@ async function page({ params }:any) {
         <h2 className="text-6xl font-bold text-center">
           Page {offers.page_no} Products{" "}
         </h2>
-        <div className="grid grid-cols-5 gap-10  mt-8">
+        <div className="grid grid-cols-5 gap-10  my-8">
           {offers?.product.map((offer: any, index: any) => (
             <div key={index}>
               <OfferCard index={index} offer={offer} />
             </div>
           ))}
         </div>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <button className="w-[180px] mt-10 mx-auto  bg-primary hover:bg-primary text-black font-bold py-2.5  px-4 rounded-md transition-colors duration-200 text-sm">
             Show more{" "}
           </button>
-        </div>
+        </div> */}
       </div>
 
       <Contactus />

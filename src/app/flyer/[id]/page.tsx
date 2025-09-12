@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 async function getProduct(id: string) {
   try {
-    const cookieStore = await cookies(); 
+    const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
 
     const res = await fetch(
@@ -12,7 +12,7 @@ async function getProduct(id: string) {
         headers: {
           authorization: token || "",
         },
-        cache: "no-store", 
+        cache: "no-store",
       }
     );
 
@@ -21,14 +21,13 @@ async function getProduct(id: string) {
     const data = await res.json();
     return data?.data || null;
   } catch (error) {
-    console.error("Error fetching product:", error);
     return null;
   }
 }
 
-async function page({ params }:any) {
-    let pa = await params;
-    const product = await getProduct(pa.id);
+async function page({ params }: any) {
+  const pa = await params;
+  const product = await getProduct(pa.id);
   return <FlyerDetail product={product} />;
 }
 
