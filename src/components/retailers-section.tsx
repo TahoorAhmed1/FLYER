@@ -2,13 +2,15 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-  
+
 import RetailerCard from "./retailer-card";
 
 import { useRetailer } from "@/store/retailer/retailer";
+import { useLocation } from "@/store/location/location";
 
 export default function RetailersSection() {
-const {retailer}=useRetailer()
+  const { retailer } = useRetailer();
+  const { city } = useLocation();
 
   return (
     <div className=" py-12 px-4">
@@ -16,7 +18,7 @@ const {retailer}=useRetailer()
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-gray-900">
-            Top Retailers in Jeddah
+            {city === "All" ? `Top Retailers ` : `Top Retailers in ${city}`}
           </h2>
           <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
             Show All
@@ -58,7 +60,7 @@ const {retailer}=useRetailer()
             }}
             className="pb-12"
           >
-            {retailer?.map((retailer:any, index:any) => (
+            {retailer?.map((retailer: any, index: any) => (
               <SwiperSlide key={index}>
                 <RetailerCard retailer={retailer} />
               </SwiperSlide>
