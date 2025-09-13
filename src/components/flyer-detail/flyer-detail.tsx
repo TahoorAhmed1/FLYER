@@ -8,17 +8,13 @@ import { Navigation, Pagination } from "swiper/modules";
 import Link from "next/link";
 import { useProduct } from "@/store/products/product";
 
-
-
-export default function FlyerDetail({ product    }: any) {
+export default function FlyerDetail({ product, flyer_id }: any) {
   const [searchTerm, setSearchTerm] = useState("");
-    const [currentPage, setCurrentPage] = useState(1); // track current page
-
+  const [currentPage, setCurrentPage] = useState(1);
   const { category } = useProduct();
-  const filteredCategories = category?.filter((category:any) =>
+  const filteredCategories = category?.filter((category: any) =>
     category?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
 
   return (
     <div className="flex min-h-screen container my-10">
@@ -46,21 +42,20 @@ export default function FlyerDetail({ product    }: any) {
         </div>
 
         <nav className="overflow-y-auto">
-          {filteredCategories.map(({name}:any, index:any) => (
-            <button
+          {filteredCategories.map(({ name, id }: any, index: any) => (
+            <Link
+              href={`/category/${id}`}
               key={index}
               className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center"
             >
               <span className="mr-2 text-gray-400">›</span>
               {name}
-            </button>
+            </Link>
           ))}
         </nav>
       </aside>
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
         <header className="flex justify-between items-center px-6 py-4 bg-white">
           <div className="flex items-center gap-4">
             <button className="p-1">
@@ -68,11 +63,8 @@ export default function FlyerDetail({ product    }: any) {
             </button>
             <span className="text-sm text-gray-600">Back</span>
             <span className="text-sm text-gray-400">
-              {product?.length > 0
-                ? `${currentPage}/${product.length}`
-                : "0/0"}
+              {product?.length > 0 ? `${currentPage}/${product.length}` : "0/0"}
             </span>
-         
           </div>
 
           <div className="flex items-center gap-2">
@@ -99,14 +91,14 @@ export default function FlyerDetail({ product    }: any) {
               pagination={{ clickable: true }}
               spaceBetween={10}
               slidesPerView={1}
-                   onSlideChange={(swiper) =>
-                setCurrentPage(swiper.activeIndex + 1) // update current page
+              onSlideChange={
+                (swiper) => setCurrentPage(swiper.activeIndex + 1) // update current page
               }
               className="w-full h-full"
             >
               {product?.map((page: any) => (
                 <SwiperSlide key={page.id}>
-                  <Link href={`/flyer/page/${page?.id}`} >
+                  <Link href={`/flyer/page/${page?.id}`}>
                     <Image
                       width={page.width}
                       height={page.height}
@@ -114,14 +106,12 @@ export default function FlyerDetail({ product    }: any) {
                       alt={`Flyer Page ${page.page_no}`}
                       className="w-full h-auto object-contain"
                     />
-                
                   </Link>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
         </main>
-
       </div>
     </div>
   );

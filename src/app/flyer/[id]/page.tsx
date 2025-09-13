@@ -28,7 +28,7 @@ async function getProduct(id: string) {
 async function page({ params }: any) {
   const pa = await params;
   const product = await getProduct(pa.id);
-  return <FlyerDetail product={product} />;
+  return <FlyerDetail product={product} flyer_id={pa?.id} />;
 }
 
 export default page;

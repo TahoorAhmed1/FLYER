@@ -19,6 +19,7 @@ export default function ShopByCategory() {
           {category.map((category:any) => (
             <CategoryItem
               key={category.id}
+              id={category?.id}
               name={category.name}
               image={category.image}
             />

@@ -44,6 +44,8 @@ export default function CategorySection() {
           {category.map((category: any, index: any) => (
             <SwiperSlide key={index}>
               <CategoryItem
+                            id={category?.id}
+
                 key={category.id}
                 name={category.name}
                 image={category.image}

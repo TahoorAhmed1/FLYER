@@ -47,6 +47,7 @@ interface CustomAxiosInstance {
   getRetailer: () => Promise<any>;
   getProduct: () => Promise<any>;
   getCategory: () => Promise<any>;
+  getProductByCategory: (category_id:any) => Promise<any>;
 }
 
 const axiosInstance = axios.create({
@@ -151,6 +152,14 @@ axiosInstance.getRetailer = () => {
 axiosInstance.getProduct = () => {
   const token = Cookies.get("token");
   return axiosInstance.get("/client/product", {
+    headers: {
+      authorization: token,
+    },
+  });
+};
+axiosInstance.getProductByCategory = (category_id:any) => {
+  const token = Cookies.get("token");
+  return axiosInstance.get(`/client/product/category?category_id=${category_id}`, {
     headers: {
       authorization: token,
     },

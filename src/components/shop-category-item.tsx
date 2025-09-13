@@ -3,14 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface CategoryItemProps {
+  id: string;
   name: string;
   image: string;
 }
 
-export function CategoryItem({ name, image }: CategoryItemProps) {
+export function CategoryItem({id, name, image }: CategoryItemProps) {
   return (
     <Link
-      href={"/offer"}
+      href={`/category/${id}`}
       className="flex flex-col items-center group cursor-pointer"
     >
       <div className="relative w-16 h-16 sm:w-24 sm:h-24 mb-4 transition-transform duration-200 group-hover:scale-105">
