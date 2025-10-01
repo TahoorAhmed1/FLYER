@@ -25,7 +25,6 @@ function OfferCard({ offer }: any) {
           className="w-full h-full object-contain"
         />
 
-        {/* Discount Badge */}
         {discount > 0 && (
           <span className="absolute top-2 left-2 bg-[#F5F5F5] text-black text-[11px] font-semibold px-2 py-[2px] rounded">
             -{discount}%
