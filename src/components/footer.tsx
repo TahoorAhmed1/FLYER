@@ -69,13 +69,13 @@ function Footer() {
                 <Link href="/about">About Us</Link>
               </li>
               <li className="w-full">
-                <Link href="#">Service </Link>
+                <Link href="/shop">Shop </Link>
               </li>
               <li className="w-full">
-                <Link href="#">Contact</Link>
+                <Link href="/contact-us">Contact</Link>
               </li>
               <li className="w-full">
-                <Link href="#">Company</Link>
+                <Link href="/wishlist">Wishlist</Link>
               </li>
             </ul>
           </div>

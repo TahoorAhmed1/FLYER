@@ -53,7 +53,7 @@ export default function HeaderBar({ user, setIsOpen, isOpen, products }: any) {
             <div className="relative inline-block text-left" ref={ddRef}>
          
                   <button
-                    className="block w-full text-base font-medium text-left px-4 py-2 "
+                    className="block w-full text-base font-medium text-left  py-2 "
                     role="menuitem"
                   >
                     {language}

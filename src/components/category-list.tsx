@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { useProduct } from "@/store/products/product";
 import { CategoryItem } from "./shop-category-item";
+import Link from "next/link";
 
 export default function CategorySection() {
   const { category } = useProduct();
@@ -15,9 +16,9 @@ export default function CategorySection() {
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
             Shop By Category
           </h2>
-          <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200 text-sm sm:text-base">
-            Show All Departments
-          </button>
+          <Link href={"/category"} className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200 text-sm sm:text-base">
+            Show All Category
+          </Link>
         </div>
 
         <Swiper

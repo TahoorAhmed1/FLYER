@@ -7,6 +7,7 @@ import RetailerCard from "./retailer-card";
 
 import { useRetailer } from "@/store/retailer/retailer";
 import { useLocation } from "@/store/location/location";
+import Link from "next/link";
 
 export default function RetailersSection() {
   const { retailer } = useRetailer();
@@ -19,9 +20,9 @@ export default function RetailersSection() {
           <h2 className="text-3xl font-bold text-gray-900">
             {city === "All" ? `Top Retailers ` : `Top Retailers in ${city}`}
           </h2>
-          <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+          <Link href={"/"} className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
             Show All
-          </button>
+          </Link>
         </div>
 
         {/* Retailers Swiper */}
