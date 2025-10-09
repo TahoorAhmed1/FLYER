@@ -33,11 +33,9 @@ async function page({ params }:any  ) {
     <div>
       <BannerSlider />
       <div className="container mt-20 mb-10">
-        <h2 className="text-6xl font-bold text-center">
-          Page {offers.page_no} Products{" "}
-        </h2>
+        
         <div className="grid grid-cols-5 gap-10  my-8">
-          {offers?.product.map((offer: any, index: any) => (
+          {offers?.products?.map((offer: any, index: any) => (
             <div key={index}>
               <OfferCard index={index} offer={offer} />
             </div>

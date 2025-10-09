@@ -100,8 +100,8 @@ export default function FlyerDetail({ product, flyer_id }: any) {
                 <SwiperSlide key={page.id}>
                   <Link href={`/flyer/page/${page?.id}`}>
                     <Image
-                      width={page.width}
-                      height={page.height}
+                      width={1000}
+                      height={1000}
                       src={page.image_url || "/placeholder.svg"}
                       alt={`Flyer Page ${page.page_no}`}
                       className="w-full h-auto object-contain"
