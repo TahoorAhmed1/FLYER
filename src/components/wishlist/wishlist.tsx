@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function WishlistPage() {
   const { products, removeProduct } = useWishlist();
-
+console.log('products', products)
   return (
     <div className="relative bg-white min-h-screen">
       <div className="max-w-5xl mx-auto px-4 py-8 md:px-8 md:py-12">
@@ -49,7 +49,7 @@ export default function WishlistPage() {
                 <div className="w-16 h-16 bg-light-gray-bg rounded-md overflow-hidden flex items-center justify-center">
                   {item.image_url ? (
                     <img
-                      src={item.image_url}
+                      src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${item.image_url}`}
                       alt={item.product_name || "Wishlist product"}
                       className="w-full h-full object-cover"
                     />

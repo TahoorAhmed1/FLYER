@@ -12,23 +12,21 @@ import { useWishlist } from "@/store/wishlist/useWishlist";
 export default function ProductDetail({ product }: any) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { addProduct, removeProduct, products } = useWishlist();
-console.log('products', products)
+
   const {
     id,
-    product_name,
+    name,
     description,
+    sale_price,
     price,
-    original_Price,
-    image_url,
+    image,
   } = product;
 
-  const discount = original_Price
-    ? Math.round(
-        ((parseFloat(original_Price) - parseFloat(price)) /
-          parseFloat(original_Price)) *
-          100
-      )
-    : 0;
+  // Calculate discount properly
+  const discount =
+    price && sale_price
+      ? Math.round(((parseFloat(price) - parseFloat(sale_price)) / parseFloat(price)) * 100)
+      : 0;
 
   const isInWishlist = products.some((p) => p.id === id);
 
@@ -37,45 +35,58 @@ console.log('products', products)
       <div className="productDetailOverlay py-10">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+            {/* Product Image Gallery */}
             <div className="w-full">
-              <ProductImageGallery images={image_url} />
+              <ProductImageGallery images={image} />
             </div>
 
+            {/* Product Info */}
             <div className="w-full space-y-6">
-              <h1 className="text-3xl font-bold text-gray-900">
-                {product_name}
-              </h1>
+              <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
 
+              {/* Price + Discount */}
               <div className="flex items-center gap-4">
                 {discount > 0 && (
                   <div className="bg-primary text-black px-3 py-1 rounded-md font-bold text-sm">
                     -{discount}%
                   </div>
                 )}
+
                 <div className="flex items-center gap-2">
-                  {original_Price && (
+                  {price && (
                     <span className="text-gray-500 line-through text-lg">
-                      {original_Price}
+                      Rs {price}
                     </span>
                   )}
                 </div>
               </div>
 
-              <div className="text-4xl font-bold text-gray-900">{price}</div>
+              {/* Final Sale Price */}
+              <div className="text-4xl font-bold text-gray-900">
+                Rs {sale_price}
+              </div>
 
               <StarRating rating={4.5} reviewCount={12} />
 
+              {/* Wishlist Button */}
               <button
                 onClick={() =>
                   isInWishlist
                     ? removeProduct(id)
-                    : addProduct({ id, product_name, price, image_url })
+                    : addProduct({
+                        id,
+                        product_name:name,
+                        price: sale_price,
+                        image_url:image, // fixed (no image_url)
+                      })
                 }
                 className="bg-primary hover:bg-primary text-black font-semibold px-6 py-2 rounded-xl transition-colors duration-200"
               >
                 {isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
               </button>
 
+              {/* Description Section */}
               <div className="space-y-4">
                 <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
                   Description
@@ -87,9 +98,8 @@ console.log('products', products)
 
                 <ExpandableSection title="Materials">
                   <p>
-                    Premium materials including aerospace-grade aluminum,
-                    ceramic shield front, and precision-milled back glass.
-                    Water resistant to IP68 standard.
+                    Premium materials including high-quality plastic build,
+                    durable long-life finish, and resistant surface.
                   </p>
                 </ExpandableSection>
               </div>
@@ -98,6 +108,7 @@ console.log('products', products)
         </div>
       </div>
 
+      {/* More Sections */}
       <OffersSection />
       <Contactus />
       <Download />

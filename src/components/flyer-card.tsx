@@ -19,7 +19,7 @@ function FlyerCard({ flyer }: any) {
         <Image
           width={500}
           height={500}
-          src={flyer?.file_url}
+          src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${flyer?.banner_image}`}
           alt={flyer?.title ?? "Flyer image"}
           className="h-[240px] w-full object-cover"
         />

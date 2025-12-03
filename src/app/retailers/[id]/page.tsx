@@ -15,7 +15,7 @@ async function getRetailerFlyer(id: string) {
     // const token = cookieStore.get("token")?.value;
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/api/client/flyer/user/${id}`);
+      `${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/api/retailers/show/${id}`);
 
     if (!res.ok) throw new Error("Failed to fetch product");
 
@@ -31,8 +31,8 @@ async function getRetailerFlyer(id: string) {
 async function page({ params }:any) {
  
    let pa=await params
-  const {flyer,store} = await getRetailerFlyer(pa.id);
-  console.log('store', store)
+  const {flyers,stores} = await getRetailerFlyer(pa.id);
+  console.log('stores', stores)
   return (
     <div>
       <BannerSlider />
@@ -57,14 +57,14 @@ async function page({ params }:any) {
       <div className="my-10">
         <h2 className="text-6xl text-center font-bold mb-5 ">Flyers </h2>
         <div className="grid grid-cols-5 container gap-10  ">
-          {flyer?.map((flyer:any, index:any) => (
+          {flyers?.map((flyer:any, index:any) => (
             <FlyerCard flyer={flyer} key={index} />
           ))}
         </div>
       </div>
       <OffersSection />
       <div className="container">
-        <Google stores={store} />
+        <Google stores={stores} />
       </div>
       <Contactus />
 

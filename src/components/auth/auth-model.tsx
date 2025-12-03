@@ -57,13 +57,15 @@ export default function AuthModel({ isOpen, setIsOpen }: any) {
     try {
       const res = await API.registerUser({
         email: values.email,
+        confirmPassword: values.password,
         password: values.password,
         full_name: values.fullName,
-        phone_number: values.phone,
+        phone: values.phone,
+        user_type:"user"
       });
-      notify("success", "Email sent successfully!");
-      localStorage.setItem("email_token", res?.data?.data?.token);
-      setUser(res?.data?.data?.user);
+       Cookies.set("token", res?.data?.data?.token);
+      notify("success", "Login successful");
+        setUser(res?.data?.data?.user);
       setShowOtp(true);
     } catch (err: any) {
       notify("error", err?.response?.data?.message || err?.message);

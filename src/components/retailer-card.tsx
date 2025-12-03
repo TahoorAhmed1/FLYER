@@ -11,11 +11,11 @@ function RetailerCard({ retailer }: any) {
       <div className="border border-[#000000]/10  rounded-lg shadow-md hover:shadow-lg">
         <div className="w-full h-[200px]  flex items-center justify-center bg-white ">
           <Image
-            src={retailer?.profile?.profile_picture_url}
+            src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${retailer?.profile?.profile_image}`}
             alt={retailer.name}
             width={500}
             height={500}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
           />
         </div>
 
@@ -26,10 +26,10 @@ function RetailerCard({ retailer }: any) {
           <div className=" mb-4">
             <p className="text-base text-[#29292E] mb-1">
               <span className="font-semibold mr-1">
-                {retailer?.flyer_count ?? 0 } flyers
+                {retailer?.flyers_count ?? 0 } flyers
               </span>{" "}
               <span className="font-semibold">
-                {retailer.product_count ?? 0} offers
+                {retailer.total_flyer_products_count ?? 0} offers
               </span>
             </p>
           </div>

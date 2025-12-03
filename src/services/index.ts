@@ -27,7 +27,7 @@ interface CustomAxiosInstance {
   request: (config: any) => Promise<any>;
   registerUser: (data: Record<string, any>) => Promise<any>;
   loginUser: (data: Record<string, any>) => Promise<any>;
-  
+
   otpVerification: (data: Record<string, any>) => Promise<any>;
   resetPasswordProcess: (
     data: Record<string, any>,
@@ -45,16 +45,17 @@ interface CustomAxiosInstance {
   getUser: () => Promise<any>;
   getAllLifeArea: () => Promise<any>;
   getRetailer: () => Promise<any>;
-  getProduct: () => Promise<any>;
+  getProduct: (id: any) => Promise<any>;
   getCategory: () => Promise<any>;
-  getProductByCategory: (category_id:any) => Promise<any>;
+  getProductByCategory: (category_id: any) => Promise<any>;
+subscribe: (data: any) => Promise<any>;
 }
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  timeout: 60000, 
-  maxContentLength: 20 * 1024 * 1024, 
-  maxBodyLength: 20 * 1024 * 1024, 
+  timeout: 60000,
+  maxContentLength: 20 * 1024 * 1024,
+  maxBodyLength: 20 * 1024 * 1024,
 }) as any;
 
 axiosInstance.interceptors.request.use(
@@ -69,17 +70,21 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.registerUser = (data: Record<string, any>) => {
-  return axiosInstance.post("/auth/register", data);
+  return axiosInstance.post("/register", data);
 };
 axiosInstance.updateProfile = (data: Record<string, any>) => {
   return axiosInstance.patch("/auth/profile/update", data);
 };
 axiosInstance.contactUs = (data: Record<string, any>) => {
-  return axiosInstance.post("/client/contact", data);
+  return axiosInstance.post("/contact/store", data);
+};
+axiosInstance.getProduct = (id: Record<string, any>) => {
+  return axiosInstance.get(`/product/${id}`);
 };
 
-
-
+axiosInstance.subscribe = (data: any) => {
+  return axiosInstance.post(`/newsletter/store`, data);
+};
 
 axiosInstance.otpVerification = (data: Record<string, any>) => {
   const emailToken = localStorage.getItem("email_token");
@@ -106,7 +111,7 @@ axiosInstance.resendOtp = (data: Record<string, any>) => {
 };
 
 axiosInstance.loginUser = (data: Record<string, any>) => {
-  return axiosInstance.post("/auth/login", data);
+  return axiosInstance.post("/login", data);
 };
 
 axiosInstance.forgotPassword = (data: Record<string, any>) => {
@@ -127,22 +132,20 @@ axiosInstance.resetPassword = (data: Record<string, any>) => {
 };
 axiosInstance.logout = () => {
   const token = Cookies.get("token");
-  return axiosInstance.get("/auth/logout", {
+  return axiosInstance.get("/logout", {
     headers: {
       authorization: token,
     },
   });
 };
 
-
-
 axiosInstance.getCategory = () => {
-  return axiosInstance.get("/client/category");
+  return axiosInstance.get("/categories");
 };
 
 axiosInstance.getRetailer = () => {
   const token = Cookies.get("token");
-  return axiosInstance.get("/client/retailer", {
+  return axiosInstance.get("/retailers", {
     headers: {
       authorization: token,
     },
@@ -157,9 +160,9 @@ axiosInstance.getProduct = () => {
     },
   });
 };
-axiosInstance.getProductByCategory = (category_id:any) => {
+axiosInstance.getProductByCategory = (category_id: any) => {
   const token = Cookies.get("token");
-  return axiosInstance.get(`/client/product/category?category_id=${category_id}`, {
+  return axiosInstance.get(`/categories/${category_id}/products`, {
     headers: {
       authorization: token,
     },

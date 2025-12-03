@@ -18,7 +18,7 @@ function OfferCard({ offer }: any) {
 
       <div className="w-full h-[200px]  flex items-center justify-center bg-white relative">
         <Image
-          src={offer.image_url}
+          src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${offer.image}`}
           alt={offer.product_name}
           width={500}
           height={500}
@@ -45,8 +45,8 @@ function OfferCard({ offer }: any) {
         </p>
 
       <p className="text-sm text-black font-medium mt-1 h-16">
-  {offer?.product_name?.split(" ").slice(0, 8).join(" ")}
-  {offer?.product_name?.split(" ").length > 8 && "..."}
+  {offer?.description?.split(" ").slice(0, 8).join(" ")}
+  {offer?.description?.split(" ").length > 8 && "..."}
 </p>
       </div>
     </div>

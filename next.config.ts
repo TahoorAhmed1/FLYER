@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
         hostname: "example.com",
         pathname: "/**", // allow all paths
       },
+      {
+        protocol: "https",
+        hostname: "olive-wolverine-763801.hostingersite.com",
+        pathname: "/**", // allow all paths
+      },
     ],
   },
 };

@@ -7,7 +7,7 @@ async function getProduct(id: string) {
     const token = cookieStore.get("token")?.value;
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/api/client/flyer/flyer_page/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/api/flyers/show/${id}`,
       {
         headers: {
           authorization: token || "",

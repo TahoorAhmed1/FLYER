@@ -34,8 +34,7 @@ export default function ContactForm() {
   const onSubmit = async (values: ContactFormValues) => {
     try {
       setLoader(true)
-      const {fullName,...data}=values
-      await API.contactUs({name:fullName,...data});
+      await API.contactUs({full_name:values.fullName,email:values.email, phone_number:values.phone, message:values.message});
 
       notify("success", "Message sent successfully");
 

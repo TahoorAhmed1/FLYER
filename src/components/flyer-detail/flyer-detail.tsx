@@ -16,6 +16,85 @@ export default function FlyerDetail({ product, flyer_id }: any) {
     category?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  let page = [
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+    {
+      id: 1,
+      user_id: 2,
+      image: "uploads/user_profile/1764624772_692e098438e63.png",
+      created_at: "2025-12-01T21:32:52.000000Z",
+      updated_at: "2025-12-01T21:32:52.000000Z",
+    },
+  ];
   return (
     <div className="flex min-h-screen container my-10">
       <aside className="w-64 bg-white border-gray-200 flex-shrink-0">
@@ -83,30 +162,95 @@ export default function FlyerDetail({ product, flyer_id }: any) {
           </div>
         </header>
 
-        <main className="flex-1 overflow-auto px-6 flex justify-center">
-          <div className="w-full rounded-md overflow-hidden bg-white relative">
+        <main className="flex-1 overflow-auto px-4">
+          <div className="w-full  overflow-hidden bg-white ">
             <Swiper
               modules={[Navigation, Pagination]}
               navigation
               pagination={{ clickable: true }}
-              spaceBetween={10}
+              spaceBetween={0}
               slidesPerView={1}
-              onSlideChange={
-                (swiper) => setCurrentPage(swiper.activeIndex + 1) // update current page
-              }
-              className="w-full h-full"
+              onSlideChange={(s) => setCurrentPage(s.activeIndex + 1)}
             >
-              {product?.map((page: any) => (
-                <SwiperSlide key={page.id}>
-                  <Link href={`/flyer/page/${page?.id}`}>
-                    <Image
-                      width={1000}
-                      height={1000}
-                      src={page.image_url || "/placeholder.svg"}
-                      alt={`Flyer Page ${page.page_no}`}
-                      className="w-full h-auto object-contain"
-                    />
-                  </Link>
+              {product?.pages?.map(({products}: any, index: any) => (
+                <SwiperSlide key={index}>
+                  <div className="grid grid-cols-12 gap-1 bg-black min-h-screen p-1 rounded-md  ">
+                    {products?.map((item: any, idx: number) => {
+                      console.log('item', item)
+                      const layout = (() => {
+                        if (idx === 0) return { col: "col-span-4 row-span-2" }; // BIG 1 (left tall)
+                        if (idx === 1) return { col: "col-span-4 row-span-2" }; // Top small 1
+                        if (idx === 2) return { col: "col-span-4 row-span-2" }; // Top small 2 (wider)
+                        if (idx === 3)
+                          return {
+                            col: "col-span-4 row-span-4",
+                            start: "col-start-9 row-start-1",
+                          }; // BIG 2 (right tall, starts at col 9)
+                        if (idx >= 4 && idx <= 6)
+                          return { col: "col-span-4 row-span-2" }; // Row 5: 3 products
+                        if (idx >= 7) return { col: "col-span-4 row-span-2" }; // Row 6+: 3 products
+                        return { col: "col-span-4" };
+                      })();
+
+                      return (
+                    <Link href={`/product/${item.id}`}
+  key={item.id || idx}
+  className={`relative overflow-hidden bg-white rounded-md shadow-sm ${layout.col} ${layout.start || ""}`}
+>
+  {/* Product Image */}
+  <Image
+    src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${item?.image}`}
+    fill
+    alt={item.title}
+    className="object-cover transition-transform duration-500 hover:scale-105"
+    priority={idx < 5}
+  />
+
+  {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+  {/* Sale / Label Badge */}
+  {item.label && (
+    <span className="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
+      {item.label}
+    </span>
+  )}
+
+  {/* Content Box */}
+  <div className="absolute bottom-2 left-2 right-2 text-white">
+    
+    {/* Title */}
+    <h3 className="font-bold text-sm md:text-base leading-tight">
+      {item.title}
+    </h3>
+
+    {/* Short Description */}
+    {item.short_desc && (
+      <p className="text-xs md:text-sm opacity-80">{item.short_desc}</p>
+    )}
+
+    {/* Price Section */}
+    <div className="flex items-center gap-2 mt-1">
+      {/* Sale Price (big) */}
+      {item.sale_price ? (
+        <>
+          <span className="text-lg font-bold text-white">
+            Rs {item.sale_price}
+          </span>
+          <span className="text-sm line-through opacity-70">
+            Rs {item.price}
+          </span>
+        </>
+      ) : (
+        <span className="text-lg font-bold">Rs {item.price}</span>
+      )}
+    </div>
+  </div>
+</Link>
+
+                      );
+                    })}
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>

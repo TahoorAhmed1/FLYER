@@ -1,8 +1,45 @@
 import { android } from "@/assets";
+import { notify } from "@/lib";
+import { API } from "@/services";
 import { X } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function AppModal({ setMobilePop }: any) {
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // Email validation function
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const Subscribe = async (e:any) => {
+    e.preventDefault()
+    if (!input.trim()) {
+      notify("error", "Email is required");
+      return;
+    }
+
+    if (!isValidEmail(input)) {
+      notify("error", "Please enter a valid email");
+      return;
+    }
+
+    try {
+      setLoading(true);
+       await API.subscribe(input);
+      notify("success", "You've been added to the waitlist!");
+      setInput(""); // reset input
+    } catch (error: any) {
+      notify("error", error?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+      setMobilePop(false)
+
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-xs p-4 sm:p-6">
       {/* modal */}
@@ -74,16 +111,27 @@ export default function AppModal({ setMobilePop }: any) {
             </div>
 
             {/* input row */}
-            <div className="mt-4 flex w-full flex-col sm:flex-row gap-3 sm:gap-4">
-              <input
+            <form 
+                onSubmit={Subscribe}
+             className="mt-4 flex w-full flex-col sm:flex-row gap-3 sm:gap-4">
+            <input
                 type="email"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                required
                 placeholder="Enter your email address"
                 className="flex-1 rounded-xl border-2 border-black bg-white px-4 py-2 text-black-primary focus:border-yellow-primary focus:outline-none"
               />
-              <button className="rounded-xl bg-black px-6 py-2 font-semibold text-primary shadow-md transition-colors hover:bg-gray-800">
-                Join
+
+              <button
+                disabled={loading}
+
+                className={`rounded-xl bg-black px-6 py-2 w-[130px] font-semibold text-primary shadow-md hover:bg-gray-800 
+                ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+              >
+                {loading ? "wait..." : "Join"}
               </button>
-            </div>
+            </form>
           </div>
 
           {/* store buttons */}
