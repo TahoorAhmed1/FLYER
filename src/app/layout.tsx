@@ -34,13 +34,13 @@ export default function RootLayout({
       setCategory(response);
     } catch (error) {}
   };
-  const fetchProductData = async () => {
-    try {
-      const data = await API.getProduct();
-      const response = data.data.data;
-      setProduct(response);
-    } catch (error) {}
-  };
+  // const fetchProductData = async () => {
+  //   try {
+  //     const data = await API.getProduct();
+  //     const response = data.data.data;
+  //     setProduct(response);
+  //   } catch (error) {}
+  // };
 
   const fetchRetailerData = async () => {
     try {
@@ -53,7 +53,7 @@ export default function RootLayout({
   useLayoutEffect(() => {
     fetchCategoryData();
     fetchRetailerData();
-    fetchProductData();
+    // fetchProductData();
   }, []);
 
   useEffect(() => {
