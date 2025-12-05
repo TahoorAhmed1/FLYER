@@ -19,14 +19,14 @@ function RetailerCard({ retailer }: any) {
           />
         </div>
 
-        <div className="py-4 px-2 ">
+        <div className="py-3 px-2 ">
           <h2 className="text-[19px] text-primary font-semibold h-[30px]">
-  {retailer?.profile?.full_name?.split(" ")[0]} {/* First Name */}
+            {retailer?.name?.split(" ")[0]} {/* First Name */}
           </h2>
           <div className=" mb-4">
             <p className="text-base text-[#29292E] mb-1">
               <span className="font-semibold mr-1">
-                {retailer?.flyers_count ?? 0 } flyers
+                {retailer?.flyers_count ?? 0} flyers
               </span>{" "}
               <span className="font-semibold">
                 {retailer.total_flyer_products_count ?? 0} offers

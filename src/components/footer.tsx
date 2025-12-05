@@ -1,9 +1,43 @@
 import { Logo } from "@/assets";
+import { notify } from "@/lib";
+import { API } from "@/services";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 function Footer() {
+    const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const Subscribe = async (e:any) => {
+    e.preventDefault()
+    if (!input.trim()) {
+      notify("error", "Email is required");
+      return;
+    }
+
+    if (!isValidEmail(input)) {
+      notify("error", "Please enter a valid email");
+      return;
+    }
+
+    try {
+      setLoading(true);
+       await API.subscribe({email:input});
+      notify("success", "Email Subscribe Successfully!");
+      setInput(""); // reset input
+    } catch (error: any) {
+      notify("error", error?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+
+    }
+  };
+
   return (
     <footer className="w-full bg-white  text-[#1D1D1F] py-10">
       <div className="container mx-auto flex   justify-between w-full gap-[50px]">
@@ -104,17 +138,23 @@ function Footer() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor
             </p>
-            <form className="flex gap-2 w-full">
+            <form onSubmit={Subscribe} className="flex gap-2 w-full">
               <input
                 type="email"
+                    value={input}
+                onChange={(e) => setInput(e.target.value)}
                 placeholder="Email"
+                 required
                 className="px-4 py-3 rounded-[10px]  bg-gray-100 outline-none w-full text-black"
               />
               <button
                 type="submit"
-                className="bg-primary text-[#1D1D1F] font-semibold px-5 w-32 mx-auto rounded-[10px]"
+                disabled={loading}
+                className="bg-primary disabled:cursor-not-allowed  text-[#1D1D1F] font-semibold px-5 w-32 mx-auto rounded-[10px]"
               >
-                Subscribe
+                
+                                {loading ? "Subscribing..." : "Subscribe"}
+
               </button>
             </form>
           </div>

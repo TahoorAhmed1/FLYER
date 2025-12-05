@@ -29,7 +29,7 @@ export default function AppModal({ setMobilePop }: any) {
     try {
       setLoading(true);
        await API.subscribe(input);
-      notify("success", "You've been added to the waitlist!");
+      notify("success", "Email Subscribe Successfully!");
       setInput(""); // reset input
     } catch (error: any) {
       notify("error", error?.message || "Something went wrong");

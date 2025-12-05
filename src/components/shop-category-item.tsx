@@ -16,7 +16,7 @@ export function CategoryItem({id, name, image }: CategoryItemProps) {
     >
       <div className="relative w-16 h-16 sm:w-24 sm:h-24 mb-4 transition-transform duration-200 group-hover:scale-105">
         <Image
-          src={category}
+          src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${image}`}
           alt={name}
           width={1000}
           height={1000}

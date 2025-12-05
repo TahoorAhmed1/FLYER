@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 function OfferCard({ offer }: any) {
-  const originalPrice = parseFloat(offer?.original_Price?.replace(/[^0-9.-]+/g, "")) || 0;
-  const currentPrice = parseFloat(offer?.price?.replace(/[^0-9.-]+/g, "")) || 0;
+  const originalPrice = parseFloat(offer?.price?.replace(/[^0-9.-]+/g, "")) || 0;
+  const currentPrice = parseFloat(offer?.sale_price?.replace(/[^0-9.-]+/g, "")) || 0;
   const discount =
     originalPrice && currentPrice
       ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
@@ -19,7 +19,7 @@ function OfferCard({ offer }: any) {
       <div className="w-full h-[200px]  flex items-center justify-center bg-white relative">
         <Image
           src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${offer.image}`}
-          alt={offer.product_name}
+          alt={offer.title}
           width={1000}
           height={1000}
           className="w-full h-full object-cover"
@@ -40,13 +40,13 @@ function OfferCard({ offer }: any) {
           <span className="font-semibold text-black">${currentPrice.toFixed(2)}</span>
         </div>
 
-        <p className="text-[#FFC107] text-md font-bold mt-4">
+        <p className="text-[#FFC107] text-md font-bold mt-2">
           ${currentPrice.toFixed(2)}
         </p>
 
       <p className="text-sm text-black font-medium mt-1 h-16">
-  {offer?.description?.split(" ").slice(0, 8).join(" ")}
-  {offer?.description?.split(" ").length > 8 && "..."}
+  {offer?.title?.split(" ").slice(0, 3).join(" ")}
+  {offer?.title?.split(" ").length > 5 && "..."}
 </p>
       </div>
     </div>
