@@ -37,16 +37,13 @@ export default function ProductDetail({ product }: any) {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
 
-            {/* Product Image Gallery */}
             <div className="w-full">
               <ProductImageGallery images={image} />
             </div>
 
-            {/* Product Info */}
             <div className="w-full space-y-6">
               <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
 
-              {/* Price + Discount */}
               <div className="flex items-center gap-4">
                 {discount > 0 && (
                   <div className="bg-primary text-black px-3 py-1 rounded-md font-bold text-sm">
