@@ -17,8 +17,8 @@ function FlyerCard({ flyer }: any) {
       className="bg-white rounded-lg shadow-sm border border-[#000000]/10 hover:shadow-lg my-1 transition-shadow duration-300 overflow-hidden cursor-pointer"
     >
         <Image
-          width={500}
-          height={500}
+          width={1000}
+          height={1000}
           src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${flyer?.banner_image}`}
           alt={flyer?.title ?? "Flyer image"}
           className="h-[240px] w-full object-cover"

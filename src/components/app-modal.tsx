@@ -47,8 +47,8 @@ export default function AppModal({ setMobilePop }: any) {
         {/* bg visual (kept) */}
         <Image
           src={android}
-          width={500}
-          height={500}
+          width={1000}
+          height={1000}
           className="pointer-events-none select-none absolute right-0 bottom-0 h-[240px] sm:h-[360px] md:h-[500px] w-auto object-contain"
           alt="root"
           priority={false}

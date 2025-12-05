@@ -20,9 +20,9 @@ function OfferCard({ offer }: any) {
         <Image
           src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${offer.image}`}
           alt={offer.product_name}
-          width={500}
-          height={500}
-          className="w-full h-full object-contain"
+          width={1000}
+          height={1000}
+          className="w-full h-full object-cover"
         />
 
         {discount > 0 && (

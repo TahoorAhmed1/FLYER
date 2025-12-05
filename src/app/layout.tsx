@@ -23,9 +23,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { setUser, user } = useUser();
+  const { setUser, user, } = useUser();
   const { setRetailer } = useRetailer();
-  const { setProduct, setCategory } = useProduct();
+  const {  setCategory ,setProduct ,setSlider} = useProduct();
 
   const fetchCategoryData = async () => {
     try {
@@ -34,26 +34,35 @@ export default function RootLayout({
       setCategory(response);
     } catch (error) {}
   };
-  // const fetchProductData = async () => {
-  //   try {
-  //     const data = await API.getProduct();
-  //     const response = data.data.data;
-  //     setProduct(response);
-  //   } catch (error) {}
-  // };
+  const FetchGetSlider = async () => {
+    try {
+      const data = await API.getSlider();
+      const response = data.data.data;
+      setSlider(response);
+    } catch (error) {}
+  };
+  const fetchProductData = async () => {
+    try {
+      const data = await API.getProductAll();
+      const response = data.data.data;
+      setProduct(response);
+    } catch (error) {}
+  };
 
   const fetchRetailerData = async () => {
     try {
       const data = await API.getRetailer();
       const response = data.data.data;
-      setRetailer(response);
+      const newResponse=response.filter((data:any)=> data?.flyers_count !== 0)
+      setRetailer(newResponse);
     } catch (error) {}
   };
 
   useLayoutEffect(() => {
     fetchCategoryData();
     fetchRetailerData();
-    // fetchProductData();
+    fetchProductData();
+    FetchGetSlider()
   }, []);
 
   useEffect(() => {

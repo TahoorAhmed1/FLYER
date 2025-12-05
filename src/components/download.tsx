@@ -53,7 +53,7 @@ function Download() {
             <Image
               src={Collection}
               alt="App collection preview"
-              width={500}
+              width={1000}
               height={423}
               sizes="(min-width: 1024px) 518px, (min-width: 640px) 80vw, 100vw"
               className="w-full h-auto object-contain"

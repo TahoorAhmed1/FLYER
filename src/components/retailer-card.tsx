@@ -12,9 +12,9 @@ function RetailerCard({ retailer }: any) {
         <div className="w-full h-[200px]  flex items-center justify-center bg-white ">
           <Image
             src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${retailer?.profile?.profile_image}`}
-            alt={retailer.name}
-            width={500}
-            height={500}
+            alt={retailer?.name}
+            width={1000}
+            height={1000}
             className="w-full h-full object-cover"
           />
         </div>

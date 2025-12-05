@@ -45,10 +45,12 @@ interface CustomAxiosInstance {
   getUser: () => Promise<any>;
   getAllLifeArea: () => Promise<any>;
   getRetailer: () => Promise<any>;
+  getProductAll: () => Promise<any>;
   getProduct: (id: any) => Promise<any>;
   getCategory: () => Promise<any>;
   getProductByCategory: (category_id: any) => Promise<any>;
 subscribe: (data: any) => Promise<any>;
+getSlider: () => Promise<any>;
 }
 
 const axiosInstance = axios.create({
@@ -69,6 +71,10 @@ axiosInstance.interceptors.request.use(
   (error: any) => Promise.reject(error)
 );
 
+
+axiosInstance.getSlider=()=>{
+  return axiosInstance.get('/sliders')
+}
 axiosInstance.registerUser = (data: Record<string, any>) => {
   return axiosInstance.post("/register", data);
 };
@@ -80,6 +86,9 @@ axiosInstance.contactUs = (data: Record<string, any>) => {
 };
 axiosInstance.getProduct = (id: Record<string, any>) => {
   return axiosInstance.get(`/product/${id}`);
+};
+axiosInstance.getProductAll = () => {
+  return axiosInstance.get(`/products`);
 };
 
 axiosInstance.subscribe = (data: any) => {

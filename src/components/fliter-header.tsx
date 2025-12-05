@@ -19,9 +19,9 @@ export default function NavigationButtons() {
         CATEGORIES
       </Link>
 
-      <button className="bg-primary hover:bg-primary text-black font-semibold px-3 py-1.5 text-sm sm:text-base rounded-md flex items-center gap-2 transition-colors duration-200 w-full sm:w-auto justify-center">
+      {/* <button className="bg-primary hover:bg-primary text-black font-semibold px-3 py-1.5 text-sm sm:text-base rounded-md flex items-center gap-2 transition-colors duration-200 w-full sm:w-auto justify-center">
         COUPONS & DEALS
-      </button>
+      </button> */}
     </div>
   );
 }

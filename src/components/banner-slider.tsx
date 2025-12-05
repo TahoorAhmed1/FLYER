@@ -4,29 +4,28 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { banner, banner2 } from "@/assets";
 import Image from "next/image";
+import { useProduct } from "@/store/products/product";
 
 const BannerSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const bannerImages = [banner, banner2];
-
+ const {slider}=useProduct()
   const nextSlide = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+    setCurrentSlide((prev) => (prev + 1) % slider.length);
     setTimeout(() => setIsTransitioning(false), 500);
-  }, [bannerImages.length, isTransitioning]);
+  }, [slider.length, isTransitioning]);
 
   const prevSlide = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide(
-      (prev) => (prev - 1 + bannerImages.length) % bannerImages.length
+      (prev) => (prev - 1 + slider.length) % slider.length
     );
     setTimeout(() => setIsTransitioning(false), 500);
-  }, [bannerImages.length, isTransitioning]);
+  }, [slider.length, isTransitioning]);
 
   const goToSlide = (index: number) => {
     if (isTransitioning || index === currentSlide) return;
@@ -82,7 +81,7 @@ const BannerSlider = () => {
     >
       {/* Slides */}
       <div className="w-full h-full">
-        {bannerImages.map((image, index) => (
+        {slider?.map(({image}:any, index:any) => (
           <div
             key={index}
             className={`absolute inset-0 transition-all duration-500 ease-in-out ${
@@ -93,7 +92,7 @@ const BannerSlider = () => {
             aria-hidden={index !== currentSlide}
           >
             <Image
-              src={image}
+              src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${image}`}
               alt="banner"
               fill
               priority={index === 0}
@@ -135,9 +134,8 @@ const BannerSlider = () => {
         <ChevronRight className="h-6 w-6" />
       </button>
 
-      {/* Dots (kept minimal, same feel, scales nicely) */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-        {bannerImages.map((_, i) => (
+        {slider.map((_:any, i:any) => (
           <button
             key={i}
             onClick={() => goToSlide(i)}

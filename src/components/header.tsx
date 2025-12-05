@@ -48,8 +48,8 @@ function Header({ user }: any) {
           <Image
             src={Logo}
             alt="Logo"
-            width={500}
-            height={500}
+            width={1000}
+            height={1000}
             className="w-[140px] sm:w-[170px]"
             priority
           />

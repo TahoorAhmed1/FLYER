@@ -21,8 +21,8 @@ export default function Google({stores}:any) {
   const [activeStore, setActiveStore] = React.useState<any | null>(null);
 
   const defaultCenter = {
-    lat: stores[0].latitude,
-    lng: stores[0].longitude,
+    lat: stores[0]?.latitude,
+    lng: stores[0]?.longitude,
   };
 
   const defaultZoom = 14;

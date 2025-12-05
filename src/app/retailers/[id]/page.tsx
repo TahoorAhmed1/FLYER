@@ -32,7 +32,6 @@ async function page({ params }:any) {
  
    let pa=await params
   const {flyers,stores} = await getRetailerFlyer(pa.id);
-  console.log('stores', stores)
   return (
     <div>
       <BannerSlider />
@@ -63,9 +62,9 @@ async function page({ params }:any) {
         </div>
       </div>
       <OffersSection />
-      <div className="container">
+     {stores[0]?.latitude && <div className="container">
         <Google stores={stores} />
-      </div>
+      </div>}
       <Contactus />
 
       <Download />

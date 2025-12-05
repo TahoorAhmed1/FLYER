@@ -18,13 +18,13 @@ export function CategoryItem({id, name, image }: CategoryItemProps) {
         <Image
           src={category}
           alt={name}
-          width={500}
-          height={500}
+          width={1000}
+          height={1000}
           className="w-full h-full rounded-full object-cover border-2 border-gray-200 group-hover:border-gray-300 transition-colors duration-200"
         />
       </div>
 
-      <span className="text-base font-semibold text-black text-center leading-tight group-hover:text-gray-900 transition-colors duration-200">
+      <span className="text-base font-semibold text-black text-center  group-hover:text-gray-900 transition-colors duration-200">
         {name}
       </span>
     </Link>

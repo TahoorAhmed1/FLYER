@@ -11,8 +11,8 @@ function WhoWeAre() {
           <Image
             src={WhoWe}
             alt="Who"
-            width={500}
-            height={500}
+            width={1000}
+            height={1000}
             sizes="(min-width:1024px) 450px, 100vw"
             className="w-full h-auto lg:w-[450px] lg:h-[490px] object-cover lg:rounded-none rounded-xl"
           />

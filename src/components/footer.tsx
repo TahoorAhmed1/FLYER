@@ -12,8 +12,8 @@ function Footer() {
             <Image
               src={Logo}
               alt="Logo"
-              width={500}
-              height={500}
+              width={1000}
+              height={1000}
               className="w-[160px]"
             />
           </a>
