@@ -20,6 +20,7 @@ export default function ProductDetail({ product }: any) {
     sale_price,
     price,
     image,
+    title
   } = product;
 
   // Calculate discount properly
@@ -76,7 +77,7 @@ export default function ProductDetail({ product }: any) {
                     ? removeProduct(id)
                     : addProduct({
                         id,
-                        product_name:name,
+                        product_name:title,
                         price: sale_price,
                         image_url:image, // fixed (no image_url)
                       })
