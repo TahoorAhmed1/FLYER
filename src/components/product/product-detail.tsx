@@ -44,7 +44,7 @@ export default function ProductDetail({ product }: any) {
 
             {/* Product Info */}
             <div className="w-full space-y-6">
-              <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
 
               {/* Price + Discount */}
               <div className="flex items-center gap-4">
