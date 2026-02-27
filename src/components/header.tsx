@@ -150,7 +150,7 @@ function Header({ user }: any) {
   ];
 
   // Get active categories
-  const activeCategories = category
+  const activeCategories = category?.filter((cat: any) => cat?.name) || [];
   const featuredCategories = activeCategories.slice(0, 8);
   
   // Popular brands (can be fetched from API)

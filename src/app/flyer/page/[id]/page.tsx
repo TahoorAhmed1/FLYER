@@ -37,7 +37,7 @@ async function page({ params }:any  ) {
         <div className="grid grid-cols-5 gap-10  my-8">
           {offers?.products?.map((offer: any, index: any) => (
             <div key={index}>
-              <OfferCard index={index} offer={offer} />
+              <OfferCard  offer={offer} />
             </div>
           ))}
         </div>

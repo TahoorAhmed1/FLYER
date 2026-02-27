@@ -20,7 +20,7 @@ function page() {
         <div className="grid grid-cols-5 gap-10  my-8">
           {product?.map((offer: any, index: any) => (
             <div key={index}>
-              <OfferCard index={index} offer={offer} />
+              <OfferCard  offer={offer} />
             </div>
           ))}
         </div>

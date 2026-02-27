@@ -8,14 +8,18 @@ import { useProduct } from "@/store/products/product";
 import { API } from "@/services";
 import OfferCard from "../offer-card";
 
-export default function FlyerDetail({ params }: { params: { category_id: string } }) {
+export default function FlyerDetail({
+  params,
+}: {
+  params: { category_id: string };
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const { category } = useProduct();
 
   const filteredCategories = category?.filter((c: any) =>
-    c?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    c?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   useEffect(() => {
@@ -95,7 +99,9 @@ export default function FlyerDetail({ params }: { params: { category_id: string 
         ) : products.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {products.map((offer: any, index: any) => (
-              <OfferCard key={index} index={index} offer={offer} />
+              <div key={index} className="w-full">
+                <OfferCard offer={offer} />
+              </div>
             ))}
           </div>
         ) : (
