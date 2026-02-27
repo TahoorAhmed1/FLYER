@@ -45,9 +45,6 @@ function page() {
 
       <OffersSection />
       <BrandSection />
-      <WhoWeAre />
-      <Contactus />
-      <Download />
     </main>
   );
 }

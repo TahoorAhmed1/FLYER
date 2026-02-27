@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useProduct } from "@/store/products/product";
+import { productImage } from "@/assets";
 
 export default function DealsOfTheDay() {
   const { product } = useProduct();
@@ -88,7 +89,7 @@ export default function DealsOfTheDay() {
 
               {dealProduct ? (
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${dealProduct.image}`}
+                  src={productImage}
                   alt={dealProduct.name}
                   fill
                   className="object-contain p-6"

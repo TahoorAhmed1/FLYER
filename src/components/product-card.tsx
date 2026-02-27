@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingCart, Eye, Star } from "lucide-react";
 import { useWishlist } from "@/store/wishlist/useWishlist";
+import { productImage } from "@/assets";
 
 export default function ProductCard({ product }: { product: any }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -40,7 +41,7 @@ export default function ProductCard({ product }: { product: any }) {
         {/* Image Container */}
         <div className="relative aspect-square overflow-hidden bg-gray-100">
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${product.image}`}
+            src={productImage}
             alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

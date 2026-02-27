@@ -21,5 +21,6 @@ import flyer from "./flyer.png"
 import fly from "./fly.png"
 import android from "./android.png"
 import contact from "./contact-us.png"
+import productImage from "./product.webp"
 
-export { contact, android, banner2, fly, flyer, productDetail, offerProduct, retailerProduct, category, brandoverlay, two, one, Brand, Retailers, AppStore, Google, Logo, Home1, LineOverly, WhoWe, WhatWe, Collection, banner }
+export { contact, productImage, android, banner2, fly, flyer, productDetail, offerProduct, retailerProduct, category, brandoverlay, two, one, Brand, Retailers, AppStore, Google, Logo, Home1, LineOverly, WhoWe, WhatWe, Collection, banner }
