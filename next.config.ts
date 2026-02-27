@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         hostname: "olive-wolverine-763801.hostingersite.com",
         pathname: "/**", // allow all paths
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**", // allow all paths
+      },
     ],
   },
 };

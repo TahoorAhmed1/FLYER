@@ -113,4 +113,242 @@ body {
 
 .masonry-item {
   break-inside: avoid;
+
+
+}
+
+
+/* Swiper Customization */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 44px !important;
+  height: 44px !important;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px !important;
+  color: #333;
+}
+
+.swiper-pagination-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background: #ddd !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fbbf24 !important;
+  transform: scale(1.2);
+}
+
+/* Product Card Hover Effects */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.loading-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+  background-size: 1000px 100%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Swiper styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fbbf24 !important;
+  z-index: 10 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fbbf24 !important;
+}
+
+/* Z-index management */
+:root {
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+}
+
+/* Header and navigation */
+header {
+  z-index: var(--z-sticky) !important;
+}
+
+/* Category mega menu */
+.category-mega-menu {
+  z-index: var(--z-dropdown) !important;
+}
+
+/* Search results dropdown */
+.search-results-dropdown {
+  z-index: var(--z-dropdown) !important;
+}
+
+/* Location dropdown */
+.location-dropdown {
+  z-index: var(--z-dropdown) !important;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  z-index: var(--z-fixed) !important;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-modal-backdrop) !important;
+}
+
+/* Modal content */
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-modal) !important;
+}
+
+/* Popovers and tooltips */
+.popover {
+  z-index: var(--z-popover) !important;
+}
+
+.tooltip {
+  z-index: var(--z-tooltip) !important;
+}
+
+/* Toast notifications */
+.toast {
+  z-index: var(--z-toast) !important;
+}
+
+/* Ensure proper stacking context for specific components */
+.retailers-swiper,
+.offers-swiper,
+.category-swiper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix for modal inside header issue */
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Ensure dropdowns appear above everything */
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+/* Dropdown containers should have higher z-index when open */
+.dropdown-open {
+  z-index: var(--z-dropdown) !important;
+}
+
+/* Fix for iOS/mobile issues */
+@media (max-width: 768px) {
+  .mobile-menu {
+    z-index: calc(var(--z-fixed) + 1) !important;
+  }
+  
+  .modal-content {
+    width: 90%;
+    max-width: 400px;
+  }
 }

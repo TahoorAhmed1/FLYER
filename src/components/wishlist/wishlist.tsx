@@ -71,7 +71,7 @@ console.log('products', products)
                     </span>
                   )}
                   <span className="font-semibold text-gray-900">
-                    {item.price ? `$${item.price}` : "-"}
+                    {item.price ? `${item.price}` : "-"}
                   </span>
                 </div>
 

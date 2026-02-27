@@ -1,152 +1,116 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { banner, banner2 } from "@/assets";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import Image from "next/image";
 import { useProduct } from "@/store/products/product";
+import Link from "next/link";
 
 const BannerSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isTransitioning, setIsTransitioning] = useState(false);
- const {slider}=useProduct()
+  const { slider } = useProduct();
+
   const nextSlide = useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
     setCurrentSlide((prev) => (prev + 1) % slider.length);
-    setTimeout(() => setIsTransitioning(false), 500);
-  }, [slider.length, isTransitioning]);
+  }, [slider.length]);
 
   const prevSlide = useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide(
-      (prev) => (prev - 1 + slider.length) % slider.length
-    );
-    setTimeout(() => setIsTransitioning(false), 500);
-  }, [slider.length, isTransitioning]);
+    setCurrentSlide((prev) => (prev - 1 + slider.length) % slider.length);
+  }, [slider.length]);
 
-  const goToSlide = (index: number) => {
-    if (isTransitioning || index === currentSlide) return;
-    setIsTransitioning(true);
-    setCurrentSlide(index);
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
-
-  const togglePlayPause = () => setIsPlaying((p) => !p);
-
-  // Auto-play
   useEffect(() => {
     if (!isPlaying) return;
-    const interval = setInterval(nextSlide, 4000);
+    const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
   }, [isPlaying, nextSlide]);
 
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prevSlide();
-      if (e.key === "ArrowRight") nextSlide();
-      if (e.key === " ") {
-        e.preventDefault();
-        togglePlayPause();
-      }
-    };
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [nextSlide, prevSlide]);
-
-  // --- Mobile swipe (no visual change) ---
-  const touchStartX = useRef<number | null>(null);
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const delta = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(delta) > 50) delta > 0 ? prevSlide() : nextSlide();
-    touchStartX.current = null;
-  };
-
   return (
-    <div
-      className="
-        relative w-full overflow-hidden group
-        h-[240px] sm:h-[340px] md:h-[420px] lg:h-[500px]
-      "
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      aria-roledescription="carousel"
-    >
-      {/* Slides */}
-      <div className="w-full h-full">
-        {slider?.map(({image}:any, index:any) => (
+    <div className="relative w-full bg-gradient-to-r from-gray-900 to-gray-800">
+      <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+        {slider?.map((slide: any, index: number) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-all duration-500 ease-in-out ${
-              index === currentSlide
-                ? "opacity-100 scale-100"
-                : "opacity-0 scale-105"
+            className={`absolute inset-0 transition-all duration-700 ease-out ${
+              index === currentSlide 
+                ? "opacity-100 scale-100" 
+                : "opacity-0 scale-110"
             }`}
-            aria-hidden={index !== currentSlide}
           >
-            <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${image}`}
-              alt="banner"
-              fill
-              priority={index === 0}
-              sizes="(min-width: 1024px) 100vw, 100vw"
-              className="object-cover"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${slide.image}`}
+                alt={`Banner ${index + 1}`}
+                fill
+                priority={index === 0}
+                className="object-cover"
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/30" />
+              
+              {/* Content */}
+              <div className="absolute inset-0 flex items-center">
+                <div className="container">
+                  <div className="max-w-2xl text-white">
+                    <span className="bg-primary text-black px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
+                      New Arrival
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                      Summer Sale
+                    </h2>
+                    <p className="text-lg sm:text-xl mb-6 text-gray-200">
+                      Up to 50% off on selected items
+                    </p>
+                    <Link
+                      href="/shop"
+                      className="bg-primary hover:bg-primary/90 text-black px-8 py-3 rounded-lg font-semibold inline-flex items-center gap-2 transition-all hover:gap-3"
+                    >
+                      Shop Now
+                      <ChevronRight className="w-5 h-5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
-      </div>
 
-      {/* Prev / Next (same look on desktop; always visible on touch) */}
-      <button
-        className="
-          absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-2xl
-          flex justify-center items-center border-0 cursor-pointer
-          bg-white/20 text-white backdrop-blur-sm hover:bg-white/30
-          transition-all duration-300
-          opacity-100 md:opacity-0 md:group-hover:opacity-100
-        "
-        onClick={prevSlide}
-        disabled={isTransitioning}
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
+        {/* Controls */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all flex items-center justify-center"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all flex items-center justify-center"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
 
-      <button
-        className="
-          absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-2xl
-          flex justify-center items-center border-0 cursor-pointer
-          bg-white/20 text-white backdrop-blur-sm hover:bg-white/30
-          transition-all duration-300
-          opacity-100 md:opacity-0 md:group-hover:opacity-100
-        "
-        onClick={nextSlide}
-        disabled={isTransitioning}
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+          className="absolute bottom-20 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all flex items-center justify-center"
+        >
+          {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+        </button>
 
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-        {slider.map((_:any, i:any) => (
-          <button
-            key={i}
-            onClick={() => goToSlide(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`h-2 w-2 rounded-full transition-opacity ${
-              i === currentSlide
-                ? "bg-white/90"
-                : "bg-white/50 hover:bg-white/70"
-            }`}
-          />
-        ))}
+        {/* Dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          {slider.map((_: any, i: number) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`h-2 rounded-full transition-all ${
+                i === currentSlide 
+                  ? "w-8 bg-primary" 
+                  : "w-2 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
