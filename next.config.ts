@@ -26,6 +26,11 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**", // allow all paths
       },
+      {
+        protocol: "http",
+        hostname: "184.174.33.33",
+        pathname: "/**", // allow all paths
+      },
     ],
   },
 };

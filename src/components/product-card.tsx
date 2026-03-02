@@ -7,7 +7,7 @@ import { Heart, ShoppingCart, Eye, Star } from "lucide-react";
 import { useWishlist } from "@/store/wishlist/useWishlist";
 import { productImage } from "@/assets";
 
-export default function ProductCard({ product }: { product: any }) {
+export default function   ProductCard({ product }: { product: any }) {
   const [isHovered, setIsHovered] = useState(false);
   const { addProduct, removeProduct, products } = useWishlist();
   

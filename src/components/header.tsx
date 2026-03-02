@@ -390,7 +390,7 @@ function Header({ user }: any) {
               {/* Mega Menu Dropdown */}
               {categoryOpen && (
                 <div 
-                  ref={categoryRef}
+                  // ref={categoryRef}
                   className="absolute  top-full left-0 w-[1000px] bg-white shadow-2xl rounded-b-2xl border-t-2 border-primary z-50 animate-fadeIn"
                 >
                   <div className="grid grid-cols-4 gap-6 p-6">
