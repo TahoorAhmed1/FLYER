@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 function page() {
-  redirect('/index.html');
+  redirect('/shope.html');
   return null;
 }
 
